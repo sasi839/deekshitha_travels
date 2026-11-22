@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Service Locations Section Styles - Deekshitha Travels
+   Palette: Charcoal Black (#121417), Warm Yellow (#F5B014), Clean White (#FFFFFF)
+   ========================================================================== */
+
+.service-locations-section {
+  width: 100%;
+  background: #14171a;
+  padding: 5rem 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.locations-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.locations-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem auto;
+}
+
+.locations-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0.75rem 0 0.65rem 0;
+  line-height: 1.25;
+}
+
+.locations-subtitle {
+  font-size: 0.98rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Grid
+   -------------------------------------------------------------------------- */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.location-card {
+  background: #181b1f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.location-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 176, 20, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.location-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(245, 176, 20, 0.12);
+  border: 1px solid rgba(245, 176, 20, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.location-pin-icon {
+  width: 22px;
+  height: 22px;
+  stroke: #f5b014;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.location-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f5b014;
+  margin-bottom: 0.35rem;
+}
+
+.location-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.65rem 0;
+}
+
+.location-desc {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Link CTA */
+.location-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f5b014;
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap 0.2s ease, color 0.2s ease;
+  padding: 0.5rem 0;
+}
+
+.location-cta-link:hover {
+  color: #e5a009;
+  gap: 0.65rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .locations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-locations-section {
+    padding: 4rem 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-locations-section {
+    padding: 3rem 1rem;
+  }
+
+  .locations-header {
+    text-align: left;
+    margin-bottom: 1.75rem;
+  }
+
+  .locations-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .locations-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .location-card {
+    padding: 1.35rem;
+  }
+}

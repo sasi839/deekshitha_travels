@@ -1,0 +1,134 @@
+/* ==========================================================================
+   VehicleFleet Section Styles - Deekshitha Travels
+   Palette: Charcoal Black (#121417), Warm Yellow (#F5B014), White (#FFFFFF)
+   ========================================================================== */
+
+.vehicle-fleet-section {
+  width: 100%;
+  background-color: #121417;
+  padding: 5.5rem 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vehicle-fleet-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Section Header
+   -------------------------------------------------------------------------- */
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.section-badge {
+  display: inline-block;
+  background: rgba(245, 176, 20, 0.12);
+  border: 1px solid rgba(245, 176, 20, 0.35);
+  color: #f5b014;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  margin-bottom: 0.85rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 600;
+  color: #f5b014;
+  margin: 0 0 0.85rem 0;
+  line-height: 1.4;
+}
+
+.section-description {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Vehicles Grid
+   Desktop: 3 per row
+   Tablet: 2 per row
+   Mobile: 1 per row (priority)
+   -------------------------------------------------------------------------- */
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+/* --------------------------------------------------------------------------
+   Tablet Layout (max-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .vehicle-fleet-section {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Layout (max-width: 768px) - Mobile Priority
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .vehicle-fleet-section {
+    padding: 3.5rem 1rem;
+  }
+
+  .section-header {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .section-badge {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .section-description {
+    font-size: 0.88rem;
+  }
+
+  .vehicles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}

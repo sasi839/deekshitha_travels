@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Universal SS Nexora Signature Footer Styles
+   Reusable developer credit component
+   ========================================================================== */
+
+.ss-nexora-signature-footer {
+  width: 100%;
+  background-color: #0d0f12;
+  padding: 2.25rem 1.5rem 2.5rem 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.ss-nexora-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Subtle Gradient Divider */
+.ss-nexora-divider {
+  width: 100%;
+  max-width: 600px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 20%,
+    rgba(245, 176, 20, 0.4) 50%,
+    rgba(255, 255, 255, 0.12) 80%,
+    transparent 100%
+  );
+  margin-bottom: 2rem;
+}
+
+/* Branding Block */
+.ss-nexora-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.ss-nexora-brand-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+.ss-nexora-brand-title-wrap:hover {
+  transform: translateY(-1px);
+}
+
+.ss-nexora-brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.ss-nexora-brand-subtitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: #f5b014;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Tagline */
+.ss-nexora-tagline {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0.35rem 0 0.55rem 0;
+}
+
+/* Services Pill */
+.ss-nexora-services-pill {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  margin-bottom: 0.65rem;
+  transition: border-color 0.25s ease;
+}
+
+.ss-nexora-services-pill:hover {
+  border-color: rgba(245, 176, 20, 0.25);
+  color: #e2e8f0;
+}
+
+.ss-nexora-dot {
+  color: #f5b014;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* Agency Copyright */
+.ss-nexora-copyright {
+  font-size: 0.72rem;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .ss-nexora-signature-footer {
+    padding: 2rem 1rem;
+  }
+
+  .ss-nexora-brand-name {
+    font-size: 1.15rem;
+  }
+
+  .ss-nexora-brand-subtitle {
+    font-size: 0.64rem;
+    letter-spacing: 0.28em;
+  }
+
+  .ss-nexora-tagline {
+    font-size: 0.84rem;
+  }
+
+  .ss-nexora-services-pill {
+    font-size: 0.68rem;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+  }
+}
