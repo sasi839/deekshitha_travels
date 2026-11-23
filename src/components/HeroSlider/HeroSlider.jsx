@@ -101,12 +101,12 @@ export default function HeroSlider() {
 
           {/* Main Heading */}
           <h1 className="hero-heading">
-            Your Journey, <span className="highlight-text">Our Priority.</span>
+            Tirupati &amp; Tirumala <span className="highlight-text">Cabs</span>
           </h1>
 
           {/* Supporting Text */}
           <p className="hero-subtitle">
-            Reliable cabs for Tirumala darshan, temple visits &amp; airport transfers.
+            Reliable temple darshan &amp; airport taxi service.
           </p>
 
           {/* Call to Action Buttons */}

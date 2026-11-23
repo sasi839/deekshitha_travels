@@ -1,18 +1,19 @@
 /* ==========================================================================
    Hero Slider Component Styles - Deekshitha Travels
    Palette: Charcoal Black (#121417), Warm Yellow (#F5B014), Clean White (#FFFFFF)
-   Compact 40vh Hero Specification
+   Compact 40vh Hero Specification: Minimal Text & Mini Action Buttons
+   Ensures the temple photography is clearly visible and unobstructed
    ========================================================================== */
 
 .hero-slider-section {
   position: relative;
   width: 100%;
-  height: 40vh;
-  min-height: 350px;
-  max-height: 440px;
+  height: clamp(360px, 42vh, 450px);
+  min-height: 340px;
+  max-height: 460px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
   overflow: hidden;
   background-color: #121417;
   color: #ffffff;
@@ -53,8 +54,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transform: scale(1.04);
+  object-position: center 30%;
+  transform: scale(1.03);
   transition: transform 6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -62,7 +63,7 @@
   transform: scale(1);
 }
 
-/* Left-focused gradient overlay: ensures high text readability on left while keeping temple photography clear */
+/* Ultra-light, unobtrusive scrim: keeps temple bright & vivid while ensuring text legibility */
 .hero-slide-overlay {
   position: absolute;
   top: 0;
@@ -71,20 +72,19 @@
   height: 100%;
   background: 
     linear-gradient(90deg, 
-      rgba(10, 12, 15, 0.9) 0%, 
-      rgba(10, 12, 15, 0.76) 28%, 
-      rgba(10, 12, 15, 0.35) 52%, 
-      rgba(10, 12, 15, 0.05) 75%, 
-      transparent 100%),
+      rgba(10, 12, 15, 0.78) 0%, 
+      rgba(10, 12, 15, 0.45) 24%, 
+      rgba(10, 12, 15, 0.08) 45%, 
+      transparent 65%),
     linear-gradient(180deg, 
-      rgba(10, 12, 15, 0.45) 0%, 
+      rgba(10, 12, 15, 0.35) 0%, 
       transparent 35%, 
-      rgba(10, 12, 15, 0.4) 100%);
+      rgba(10, 12, 15, 0.65) 100%);
   pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
-   Hero Content
+   Hero Content (Anchored to Bottom-Left for Maximum Image Exposure)
    -------------------------------------------------------------------------- */
 .hero-content-container {
   position: relative;
@@ -92,31 +92,31 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: calc(70px + 1rem) 1.5rem 2rem 1.5rem;
+  padding: 0 1.5rem 1.85rem 1.5rem;
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
 }
 
 .hero-content-inner {
-  max-width: 440px;
+  max-width: 380px;
   text-align: left;
 }
 
-/* Location Highlight Badge */
+/* Location & Destination Highlight Badge (Mini Pill) */
 .hero-location-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: rgba(245, 176, 20, 0.12);
-  border: 1px solid rgba(245, 176, 20, 0.32);
+  gap: 0.3rem;
+  background: rgba(245, 176, 20, 0.14);
+  border: 1px solid rgba(245, 176, 20, 0.35);
   color: #f5b014;
-  padding: 0.28rem 0.75rem;
+  padding: 0.16rem 0.55rem;
   border-radius: 9999px;
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  margin-bottom: 0.65rem;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.35rem;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -138,21 +138,21 @@
 }
 
 .location-icon {
-  width: 13px;
-  height: 13px;
+  width: 11px;
+  height: 11px;
   flex-shrink: 0;
   stroke: #f5b014;
 }
 
-/* Main Heading */
+/* Main Heading (Significantly reduced, elegant & crisp) */
 .hero-heading {
-  font-size: clamp(1.55rem, 2.8vw, 2.3rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   color: #ffffff;
-  margin: 0 0 0.45rem 0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  margin: 0 0 0.22rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
 }
 
 .highlight-text {
@@ -160,34 +160,34 @@
   display: inline-block;
 }
 
-/* Supporting Text */
+/* Supporting Text (Compact, single-line or tight 2-line) */
 .hero-subtitle {
-  font-size: clamp(0.88rem, 1.3vw, 1.02rem);
+  font-size: clamp(0.76rem, 1.05vw, 0.84rem);
   font-weight: 400;
-  line-height: 1.45;
-  color: #cbd5e1;
-  margin: 0 0 1rem 0;
-  max-width: 580px;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  line-height: 1.35;
+  color: #e2e8f0;
+  margin: 0 0 0.55rem 0;
+  max-width: 360px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
 
 /* --------------------------------------------------------------------------
-   CTA Action Buttons (Compact, Modern Rounded Pills)
+   CTA Action Buttons (Mini Modern Rounded Pills)
    -------------------------------------------------------------------------- */
 .hero-cta-group {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .hero-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.52rem 1.15rem;
-  font-size: 0.88rem;
+  gap: 0.35rem;
+  padding: 0.32rem 0.8rem;
+  font-size: 0.74rem;
   font-weight: 600;
   border-radius: 9999px;
   text-decoration: none;
@@ -195,44 +195,44 @@
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  min-height: 38px;
+  min-height: 30px;
   box-sizing: border-box;
   line-height: 1;
 }
 
 .btn-svg-icon {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
 }
 
-/* Call Now Button – Complementary Premium Style */
+/* Call Now Button – Complementary Premium Mini Pill */
 .hero-btn-call {
   background-color: #f5b014;
   color: #121417;
   border: 1px solid #f5b014;
-  box-shadow: 0 2px 10px rgba(245, 176, 20, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hero-btn-call:hover {
   background-color: #e5a009;
   border-color: #e5a009;
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 14px rgba(245, 176, 20, 0.35);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 3px 10px rgba(245, 176, 20, 0.35);
 }
 
 .hero-btn-call:active {
   transform: translateY(0) scale(0.98);
 }
 
-/* WhatsApp Chat Button – Subtle Green Accent Style */
+/* WhatsApp Chat Button – Subtle Green Accent Mini Pill */
 .hero-btn-whatsapp {
-  background: rgba(37, 211, 102, 0.1);
+  background: rgba(37, 211, 102, 0.12);
   color: #ffffff;
-  border: 1px solid rgba(37, 211, 102, 0.35);
+  border: 1px solid rgba(37, 211, 102, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hero-btn-whatsapp .whatsapp-icon {
@@ -244,8 +244,8 @@
   background-color: #25d366;
   border-color: #25d366;
   color: #ffffff;
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
 }
 
 .hero-btn-whatsapp:hover .whatsapp-icon {
@@ -257,17 +257,17 @@
 }
 
 /* --------------------------------------------------------------------------
-   Slider Navigation Arrows (Refined & Compact)
+   Slider Navigation Arrows (Refined Mini Circles)
    -------------------------------------------------------------------------- */
 .slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 15;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(18, 20, 23, 0.65);
+  background: rgba(18, 20, 23, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: #ffffff;
   display: flex;
@@ -281,8 +281,8 @@
 }
 
 .slider-arrow svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .slider-arrow:hover {
@@ -305,24 +305,25 @@
 }
 
 /* --------------------------------------------------------------------------
-   Slide Indicators (Dots)
+   Slide Indicators (Dots on Bottom-Right so center is completely clear)
    -------------------------------------------------------------------------- */
 .slider-indicators {
   position: absolute;
-  bottom: 0.85rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 1.85rem;
+  right: 2rem;
+  left: auto;
+  transform: none;
   z-index: 15;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .indicator-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.45);
   border: none;
   cursor: pointer;
   padding: 0;
@@ -330,11 +331,11 @@
 }
 
 .indicator-dot:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .indicator-dot.active {
-  width: 24px;
+  width: 20px;
   background: #f5b014;
 }
 
@@ -343,103 +344,122 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
   .hero-slider-section {
-    height: 38vh;
-    min-height: 320px;
-    max-height: 400px;
+    height: clamp(340px, 40vh, 400px);
   }
 
   .slider-arrow {
     display: none;
   }
+
+  .slider-indicators {
+    bottom: 1.25rem;
+    right: 1.5rem;
+  }
 }
 
 @media (max-width: 640px) {
   .hero-slider-section {
-    height: auto;
-    min-height: 310px;
-    padding-bottom: 0.5rem;
+    height: clamp(300px, 44vh, 350px);
+    min-height: 290px;
   }
 
   .hero-slide-overlay {
     background: 
       linear-gradient(180deg, 
-        rgba(10, 12, 15, 0.65) 0%, 
-        rgba(10, 12, 15, 0.5) 45%, 
-        rgba(10, 12, 15, 0.88) 100%),
+        rgba(10, 12, 15, 0.4) 0%, 
+        transparent 35%, 
+        rgba(10, 12, 15, 0.78) 100%),
       linear-gradient(90deg, 
-        rgba(10, 12, 15, 0.88) 0%, 
-        rgba(10, 12, 15, 0.6) 65%, 
-        rgba(10, 12, 15, 0.35) 100%);
+        rgba(10, 12, 15, 0.75) 0%, 
+        rgba(10, 12, 15, 0.3) 60%, 
+        transparent 100%);
   }
 
   .hero-content-container {
-    padding: calc(65px + 0.75rem) 1.15rem 1.75rem 1.15rem;
+    padding: 0 1rem 1.15rem 1rem;
   }
 
   .hero-content-inner {
-    max-width: 100%;
+    max-width: 280px;
   }
 
   .hero-location-badge {
-    font-size: 0.72rem;
-    padding: 0.22rem 0.65rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.64rem;
+    padding: 0.14rem 0.48rem;
+    margin-bottom: 0.25rem;
   }
 
   .hero-heading {
-    font-size: 1.45rem;
-    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
+    margin-bottom: 0.18rem;
   }
 
   .hero-subtitle {
-    font-size: 0.86rem;
-    line-height: 1.4;
-    margin-bottom: 0.85rem;
+    font-size: 0.72rem;
+    line-height: 1.3;
+    margin-bottom: 0.45rem;
   }
 
   .hero-cta-group {
     flex-direction: row;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.45rem;
   }
 
   .hero-btn {
-    padding: 0.48rem 0.95rem;
-    font-size: 0.84rem;
-    min-height: 36px;
+    padding: 0.26rem 0.68rem;
+    font-size: 0.7rem;
+    min-height: 26px;
+    gap: 0.3rem;
+  }
+
+  .btn-svg-icon {
+    width: 11px;
+    height: 11px;
   }
 
   .slider-indicators {
-    bottom: 0.6rem;
+    bottom: 1.15rem;
+    right: 1rem;
+    gap: 0.35rem;
+  }
+
+  .indicator-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .indicator-dot.active {
+    width: 16px;
   }
 }
 
 @media (max-width: 360px) {
   .hero-slider-section {
-    min-height: 295px;
+    height: 280px;
+    min-height: 270px;
   }
 
   .hero-content-container {
-    padding: calc(65px + 0.6rem) 0.85rem 1.6rem 0.85rem;
+    padding: 0 0.75rem 1rem 0.75rem;
+  }
+
+  .hero-content-inner {
+    max-width: 250px;
   }
 
   .hero-heading {
-    font-size: 1.3rem;
+    font-size: 0.96rem;
   }
 
   .hero-subtitle {
-    font-size: 0.8rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .hero-cta-group {
-    gap: 0.5rem;
+    font-size: 0.68rem;
+    margin-bottom: 0.35rem;
   }
 
   .hero-btn {
-    padding: 0.42rem 0.8rem;
-    font-size: 0.8rem;
-    min-height: 34px;
-    gap: 0.35rem;
+    padding: 0.22rem 0.58rem;
+    font-size: 0.66rem;
+    min-height: 24px;
   }
 }
