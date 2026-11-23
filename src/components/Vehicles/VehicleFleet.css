@@ -10,11 +10,14 @@
   box-sizing: border-box;
   position: relative;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: hidden;
 }
 
 .vehicle-fleet-container {
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* --------------------------------------------------------------------------
@@ -24,6 +27,7 @@
   text-align: center;
   max-width: 720px;
   margin: 0 auto 3.5rem auto;
+  box-sizing: border-box;
 }
 
 .section-badge {
@@ -66,15 +70,17 @@
 
 /* --------------------------------------------------------------------------
    Vehicles Grid
-   Desktop: 3 per row
+   Desktop: 3 per row (Preserved)
    Tablet: 2 per row
-   Mobile: 1 per row (priority)
+   Mobile: 2 per row (Phase 8 2-Column Mobile Optimization)
    -------------------------------------------------------------------------- */
 .vehicles-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.75rem;
   align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* --------------------------------------------------------------------------
@@ -82,7 +88,7 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .vehicles-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
   }
 
@@ -96,39 +102,65 @@
 }
 
 /* --------------------------------------------------------------------------
-   Mobile Layout (max-width: 768px) - Mobile Priority
+   Mobile Layout (max-width: 768px) - 2-Column Mobile Priority
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   .vehicle-fleet-section {
-    padding: 3.5rem 1rem;
+    padding: 3rem 0.75rem;
   }
 
   .section-header {
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
   .section-badge {
     font-size: 0.72rem;
-    padding: 0.3rem 0.75rem;
-  }
-
-  .section-title {
-    font-size: 1.85rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-subtitle {
-    font-size: 1rem;
+    padding: 0.28rem 0.7rem;
     margin-bottom: 0.65rem;
   }
 
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
   .section-description {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
+  }
+
+  /* 2-Column Grid on Mobile with minmax(0, 1fr) to prevent track blowouts */
+  .vehicles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Small Mobile Devices (max-width: 420px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 420px) {
+  .vehicle-fleet-section {
+    padding: 2.25rem 0.5rem;
   }
 
   .vehicles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Ultra-narrow screens (max-width: 310px) - Single column fallback
+   -------------------------------------------------------------------------- */
+@media (max-width: 310px) {
+  .vehicles-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 0.75rem;
   }
 }
