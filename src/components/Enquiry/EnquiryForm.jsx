@@ -106,7 +106,8 @@ export default function EnquiryForm() {
   };
 
   return (
-    <section id="contact" className="enquiry-section" aria-label="Customer Travel Enquiry">
+    <section id="booking" className="enquiry-section" aria-label="Customer Travel Enquiry">
+      <div id="contact" style={{ position: "absolute", top: 0, left: 0, height: 1, width: 1, pointerEvents: "none" }} aria-hidden="true" />
       <div className="enquiry-container">
         {/* Section Header */}
         <header className="enquiry-header">

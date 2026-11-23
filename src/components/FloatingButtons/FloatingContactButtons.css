@@ -1,8 +1,76 @@
 /* ==========================================================================
-   Floating Contact Buttons Styles - Deekshitha Travels
-   Fixed Bottom-Right Action Buttons: WhatsApp (Top) & Call Now (Bottom)
+   Floating Controls Styles - Deekshitha Travels
+   1. Bottom-Left: Persistent "Book a Ride" Pill Shortcut
+   2. Bottom-Right: Quick Contact Options (WhatsApp above, Call Now below)
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1. Floating Book a Ride Button (Bottom-Left)
+   -------------------------------------------------------------------------- */
+.floating-book-container {
+  position: fixed;
+  bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
+  left: calc(1.75rem + env(safe-area-inset-left, 0px));
+  z-index: 990;
+  pointer-events: auto;
+}
+
+.floating-book-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: #181b1f;
+  border: 1px solid rgba(245, 176, 20, 0.45);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  min-height: 52px;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.floating-book-btn:hover {
+  background-color: #22262c;
+  border-color: #f5b014;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.55), 0 0 14px rgba(245, 176, 20, 0.25);
+}
+
+.floating-book-btn:active {
+  transform: scale(0.97);
+}
+
+.floating-book-btn:focus-visible {
+  outline: 3px solid #f5b014;
+  outline-offset: 3px;
+}
+
+.book-btn-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #f5b014;
+  flex-shrink: 0;
+}
+
+.book-btn-text {
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Floating Contact Buttons (Bottom-Right: WhatsApp Top & Call Below)
+   -------------------------------------------------------------------------- */
 .floating-contact-container {
   position: fixed;
   bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
@@ -16,7 +84,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Floating Button Base
+   Floating Button Base (Circular)
    -------------------------------------------------------------------------- */
 .floating-btn {
   position: relative;
@@ -54,9 +122,7 @@
   flex-shrink: 0;
 }
 
-/* --------------------------------------------------------------------------
-   1. WhatsApp Button (Top)
-   -------------------------------------------------------------------------- */
+/* WhatsApp Button */
 .floating-btn-whatsapp {
   background-color: #25d366;
   color: #ffffff;
@@ -67,9 +133,7 @@
   box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
 }
 
-/* --------------------------------------------------------------------------
-   2. Call Now Button (Bottom)
-   -------------------------------------------------------------------------- */
+/* Call Now Button */
 .floating-btn-call {
   background-color: #f5b014;
   color: #121417;
@@ -80,9 +144,7 @@
   box-shadow: 0 6px 22px rgba(245, 176, 20, 0.45);
 }
 
-/* --------------------------------------------------------------------------
-   Tooltip on Desktop Hover / Focus
-   -------------------------------------------------------------------------- */
+/* Tooltip on Desktop Hover */
 .floating-tooltip {
   position: absolute;
   right: calc(100% + 12px);
@@ -117,24 +179,79 @@
    Mobile Viewport Adjustments (Mobile Priority)
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
+  .floating-book-container {
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    left: calc(1rem + env(safe-area-inset-left, 0px));
+  }
+
+  .floating-book-btn {
+    padding: 0.6rem 0.95rem;
+    min-height: 46px;
+    font-size: 0.82rem;
+    gap: 0.45rem;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  }
+
+  .book-btn-icon {
+    width: 17px;
+    height: 17px;
+  }
+
   .floating-contact-container {
     bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
-    right: calc(1.15rem + env(safe-area-inset-right, 0px));
-    gap: 0.75rem;
+    right: calc(1rem + env(safe-area-inset-right, 0px));
+    gap: 0.65rem;
   }
 
   .floating-btn {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
 
   .floating-icon {
-    width: 24px;
-    height: 24px;
+    width: 23px;
+    height: 23px;
   }
 
-  /* Disable hover tooltips on touch screens to prevent sticking */
   .floating-tooltip {
     display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Extra Small Mobile Viewports (max-width: 360px: 320px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .floating-book-container {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    left: calc(0.75rem + env(safe-area-inset-left, 0px));
+  }
+
+  .floating-book-btn {
+    padding: 0.5rem 0.8rem;
+    min-height: 42px;
+    font-size: 0.76rem;
+    gap: 0.35rem;
+  }
+
+  .book-btn-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .floating-contact-container {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    right: calc(0.75rem + env(safe-area-inset-right, 0px));
+    gap: 0.55rem;
+  }
+
+  .floating-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-icon {
+    width: 21px;
+    height: 21px;
   }
 }
