@@ -4,7 +4,10 @@
     "username": "admin",
     "passwordHash": "$2b$10$bneDmLu4SCcjXkfvCQ72r.EHK7riON0KXfIhFb3PLV9eyQYeoL2vS",
     "role": "admin",
-    "name": "Deekshitha Travels Administrator"
+    "name": "Deekshitha Travels Operations Head",
+    "email": "deekshithatravels21@gmail.com",
+    "phone": "6300540826",
+    "updatedAt": "2026-11-23T09:07:01.780Z"
   },
   "sliders": [
     {

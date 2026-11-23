@@ -4,14 +4,14 @@ import AdminLogin from "./AdminLogin";
 import AdminOverview from "./AdminOverview";
 import AdminSliders from "./AdminSliders";
 import AdminVehicles from "./AdminVehicles";
-import AdminSettings from "./AdminSettings";
+import AdminProfile from "./AdminProfile";
 import "./AdminPanel.css";
 
 export default function AdminPanel({ onBackToSite }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
-  const [currentTab, setCurrentTab] = useState("overview"); // "overview" | "sliders" | "vehicles" | "settings"
+  const [currentTab, setCurrentTab] = useState("overview"); // "overview" | "sliders" | "vehicles" | "profile"
   const [sliders, setSliders] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
@@ -116,6 +116,8 @@ export default function AdminPanel({ onBackToSite }) {
     return <AdminLogin onLoginSuccess={handleLoginSuccess} onBackToSite={onBackToSite} />;
   }
 
+  const userInitial = (currentUser?.name || currentUser?.username || "A").charAt(0).toUpperCase();
+
   return (
     <div className="admin-layout">
       {/* Toast Notification */}
@@ -131,15 +133,16 @@ export default function AdminPanel({ onBackToSite }) {
         </div>
       )}
 
-      {/* Mobile Backdrop */}
+      {/* Mobile Drawer Backdrop */}
       {isMobileMenuOpen && (
         <div
           className="admin-mobile-backdrop"
           onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar Navigation */}
       <aside className={`admin-sidebar ${isMobileMenuOpen ? "open" : ""}`}>
         <div className="admin-brand">
           <img
@@ -153,6 +156,24 @@ export default function AdminPanel({ onBackToSite }) {
           <div className="admin-brand-text">
             <span className="admin-brand-name">Deekshitha</span>
             <span className="admin-brand-badge">ADMIN</span>
+          </div>
+          {/* Close button on mobile sidebar */}
+          <button
+            type="button"
+            className="admin-sidebar-mobile-close"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close Menu"
+          >
+            &times;
+          </button>
+        </div>
+
+        {/* User Card inside Sidebar */}
+        <div className="admin-sidebar-user" onClick={() => handleNavigate("profile")}>
+          <div className="sidebar-avatar">{userInitial}</div>
+          <div className="sidebar-user-info">
+            <strong className="sidebar-user-name">{currentUser?.name || "Administrator"}</strong>
+            <span className="sidebar-user-role">@{currentUser?.username || "admin"}</span>
           </div>
         </div>
 
@@ -202,14 +223,14 @@ export default function AdminPanel({ onBackToSite }) {
 
           <button
             type="button"
-            className={`admin-nav-item ${currentTab === "settings" ? "active" : ""}`}
-            onClick={() => handleNavigate("settings")}
+            className={`admin-nav-item ${currentTab === "profile" ? "active" : ""}`}
+            onClick={() => handleNavigate("profile")}
           >
             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none">
-              <circle cx="12" cy="12" r="3" />
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
             </svg>
-            <span>Settings</span>
+            <span>Admin Profile</span>
           </button>
         </nav>
 
@@ -243,7 +264,7 @@ export default function AdminPanel({ onBackToSite }) {
               type="button"
               className="admin-hamburger"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle Navigation"
+              aria-label="Toggle Navigation Menu"
             >
               <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none">
                 <line x1="3" y1="12" x2="21" y2="12" />
@@ -252,27 +273,31 @@ export default function AdminPanel({ onBackToSite }) {
               </svg>
             </button>
             <h1 className="admin-top-title">
-              {currentTab === "overview" && "Dashboard Overview"}
-              {currentTab === "sliders" && "Hero Carousel Sliders"}
-              {currentTab === "vehicles" && "Fleet Inventory"}
-              {currentTab === "settings" && "Security & Info"}
+              {currentTab === "overview" && "Overview"}
+              {currentTab === "sliders" && "Hero Sliders"}
+              {currentTab === "vehicles" && "Vehicle Fleet"}
+              {currentTab === "profile" && "Admin Profile"}
             </h1>
           </div>
 
           <div className="topbar-right">
-            <div className="admin-user-pill">
-              <div className="user-avatar-circle">
-                {(currentUser?.name || "A").charAt(0).toUpperCase()}
-              </div>
+            <div
+              className="admin-user-pill"
+              onClick={() => handleNavigate("profile")}
+              title="Click to view & edit admin profile"
+              style={{ cursor: "pointer" }}
+            >
+              <div className="user-avatar-circle">{userInitial}</div>
               <span className="user-name-label">{currentUser?.name || "Administrator"}</span>
             </div>
             <button
               type="button"
-              className="admin-btn admin-btn-sm admin-btn-secondary"
+              className="admin-btn admin-btn-sm admin-btn-secondary view-site-top-btn"
               onClick={onBackToSite}
               title="Return to public customer website"
             >
-              Public Site &rarr;
+              <span className="topbar-btn-text">Public Site &rarr;</span>
+              <span className="topbar-btn-icon">&rarr;</span>
             </button>
           </div>
         </header>
@@ -313,8 +338,13 @@ export default function AdminPanel({ onBackToSite }) {
             />
           )}
 
-          {currentTab === "settings" && (
-            <AdminSettings onShowToast={showToast} />
+          {currentTab === "profile" && (
+            <AdminProfile
+              user={currentUser}
+              onUpdateUser={(updated) => setCurrentUser(updated)}
+              onLogout={handleLogout}
+              onShowToast={showToast}
+            />
           )}
         </main>
       </div>

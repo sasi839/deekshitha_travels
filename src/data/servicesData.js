@@ -77,23 +77,172 @@ export const SERVICES_LIST = [
   }
 ];
 
+export const LOCATION_CATEGORIES = [
+  { id: "all", label: "All Hubs" },
+  { id: "transit", label: "Airports & Transit" },
+  { id: "temples", label: "Pilgrimage Temples" },
+  { id: "areas", label: "Key Areas & Sightseeing" },
+  { id: "institutions", label: "Hospitals & Campuses" }
+];
+
 export const SERVICE_LOCATIONS = [
-  {
-    id: "tirupati",
-    name: "Tirupati",
-    areaType: "City & Pilgrimage Hub",
-    description: "Full service coverage across Tirupati city, hotels, and pilgrimage routes."
-  },
-  {
-    id: "renigunta",
-    name: "Renigunta",
-    areaType: "Railway Junction & Environs",
-    description: "Dedicated pickup and drop services for Renigunta Railway Station and surrounding areas."
-  },
+  // 1. Airports & Transportation
   {
     id: "tirupati-airport",
-    name: "Tirupati Airport",
-    areaType: "Domestic Airport Terminal",
-    description: "Timely airport taxi transfers connecting Tirupati Airport with Tirupati city and Renigunta."
+    category: "transit",
+    categoryLabel: "Airports & Transit",
+    name: "Tirupati International Airport",
+    areaType: "Terminal Pickup & Drop",
+    description: "24/7 flight-aligned taxi pickups, drop-offs, and flight tracking with luggage support at Renigunta terminal."
+  },
+  {
+    id: "tirupati-railway-station",
+    category: "transit",
+    categoryLabel: "Airports & Transit",
+    name: "Tirupati Railway Station (TPTY)",
+    areaType: "Main Rail Terminal",
+    description: "Platform-side pickup and transfer directly to hotels, Tirumala ghat road, or surrounding temple circuits."
+  },
+  {
+    id: "renigunta-junction",
+    category: "transit",
+    categoryLabel: "Airports & Transit",
+    name: "Renigunta Railway Junction (RU)",
+    areaType: "Major Junction Hub",
+    description: "Round-the-clock cab availability for long-distance trains arriving at Renigunta junction."
+  },
+  {
+    id: "tirupati-bus-station",
+    category: "transit",
+    categoryLabel: "Airports & Transit",
+    name: "Tirupati Central Bus Station (CBS)",
+    areaType: "APSRTC Central Depot",
+    description: "Prompt pickups and drops connecting the central bus complex to hotels and pilgrimage sites."
+  },
+  {
+    id: "alipiri-bus-station",
+    category: "transit",
+    categoryLabel: "Airports & Transit",
+    name: "Alipiri Bus Station & Foothills",
+    areaType: "Tirumala Gateway",
+    description: "Gateway point for uphill vehicles and pilgrims walking the traditional Alipiri Mettu footpath."
+  },
+
+  // 2. Famous Temples & Pilgrimage Destinations
+  {
+    id: "tirumala-temple",
+    category: "temples",
+    categoryLabel: "Pilgrimage Temples",
+    name: "Tirumala Sri Venkateswara Temple",
+    areaType: "Sacred Hill Shrine",
+    description: "Specialized uphill and downhill ghat road taxi trips with experienced hill drivers and return waiting."
+  },
+  {
+    id: "padmavathi-temple",
+    category: "temples",
+    categoryLabel: "Pilgrimage Temples",
+    name: "Sri Padmavathi Ammavari Temple",
+    areaType: "Tiruchanur Pilgrimage",
+    description: "Dedicated cab service for darshan at Tiruchanur, complete with custom waiting and return packages."
+  },
+  {
+    id: "kapila-theertham",
+    category: "temples",
+    categoryLabel: "Pilgrimage Temples",
+    name: "Kapila Theertham Temple & Falls",
+    areaType: "Sacred Waterfall Shrine",
+    description: "Comfortable city transit to the holy Shiva temple and natural waterfall at the foot of Seshachalam hills."
+  },
+  {
+    id: "iskcon-tirupati",
+    category: "temples",
+    categoryLabel: "Pilgrimage Temples",
+    name: "ISKCON Temple Tirupati",
+    areaType: "Radha Govinda Mandir",
+    description: "Convenient local transfers for tourists and devotees visiting ISKCON along Alipiri Bypass Road."
+  },
+  {
+    id: "srinivasa-mangapuram",
+    category: "temples",
+    categoryLabel: "Pilgrimage Temples",
+    name: "Srinivasa Mangapuram Temple",
+    areaType: "Kalyana Venkateswara",
+    description: "Smooth outstation-style taxi rides to the historic temple located 12 km west of Tirupati."
+  },
+  {
+    id: "govindaraja-swamy",
+    category: "temples",
+    categoryLabel: "Pilgrimage Temples",
+    name: "Sri Govindaraja Swamy Temple",
+    areaType: "Heart of Tirupati",
+    description: "Quick city taxi drops right by the historic Raja Gopuram near the Tirupati Railway Station."
+  },
+
+  // 3. Key Areas & Sightseeing
+  {
+    id: "tiruchanur-area",
+    category: "areas",
+    categoryLabel: "Key Areas & Sightseeing",
+    name: "Tiruchanur & Suburbs",
+    areaType: "Pilgrimage & Residential",
+    description: "Frequent point-to-point taxi services connecting Tiruchanur town, marriage halls, and hotels."
+  },
+  {
+    id: "renigunta-city",
+    category: "areas",
+    categoryLabel: "Key Areas & Sightseeing",
+    name: "Renigunta Industrial & Town Area",
+    areaType: "Industrial & Transit",
+    description: "Regular corporate and local cab rides across Renigunta industrial zones and residential pockets."
+  },
+  {
+    id: "chandragiri-fort",
+    category: "areas",
+    categoryLabel: "Key Areas & Sightseeing",
+    name: "Chandragiri Fort & Heritage Park",
+    areaType: "Historical Sightseeing",
+    description: "Sightseeing packages with driver waiting for the Raja Mahal Museum and the evening Light & Sound show."
+  },
+  {
+    id: "tirupati-city-centre",
+    category: "areas",
+    categoryLabel: "Key Areas & Sightseeing",
+    name: "Tirupati City Centre",
+    areaType: "Bhavani Nagar, Tilak Rd & Korlagunta",
+    description: "Door-to-door cab bookings across major markets, shopping centers, lodges, and residential neighborhoods."
+  },
+
+  // 4. Hospitals & Educational Campuses
+  {
+    id: "svims-hospital",
+    category: "institutions",
+    categoryLabel: "Hospitals & Campuses",
+    name: "SVIMS & BIRRD Super Speciality",
+    areaType: "Medical Healthcare Hub",
+    description: "Priority emergency and scheduled transportation for patients, attendants, and visiting doctors."
+  },
+  {
+    id: "ruia-hospital",
+    category: "institutions",
+    categoryLabel: "Hospitals & Campuses",
+    name: "Ruia Government General Hospital",
+    areaType: "Regional Medical Center",
+    description: "Reliable patient transit and doorstep pickup connecting Ruia Hospital with regional towns."
+  },
+  {
+    id: "sv-university",
+    category: "institutions",
+    categoryLabel: "Hospitals & Campuses",
+    name: "Sri Venkateswara University (SVU)",
+    areaType: "Educational Campus",
+    description: "Campus transit for students, parents, faculty, and visiting delegations across the sprawling SVU grounds."
+  },
+  {
+    id: "ttd-administrative",
+    category: "institutions",
+    categoryLabel: "Hospitals & Campuses",
+    name: "TTD Administrative Buildings",
+    areaType: "KT Road Government Hub",
+    description: "Hassle-free transfers to TTD administrative offices, darshan pass counters, and KT Road institutions."
   }
 ];

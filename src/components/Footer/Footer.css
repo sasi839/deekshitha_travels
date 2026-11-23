@@ -19,12 +19,12 @@
 }
 
 /* --------------------------------------------------------------------------
-   4-Column Grid Layout
+   3-Column Grid Layout (Brand, Services, Contact)
    -------------------------------------------------------------------------- */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
-  gap: 2.75rem;
+  grid-template-columns: 1.5fr 1fr 1.3fr;
+  gap: 3.5rem;
   margin-bottom: 3rem;
 }
 
@@ -281,8 +281,12 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
+  }
+
+  .footer-col-contact {
+    grid-column: span 2;
   }
 
   .footer-main-container {
@@ -295,6 +299,10 @@
     grid-template-columns: 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .footer-col-contact {
+    grid-column: span 1;
   }
 
   .footer-locations-strip {

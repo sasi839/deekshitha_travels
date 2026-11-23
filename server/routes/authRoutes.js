@@ -38,7 +38,10 @@ router.post("/login", (req, res) => {
       id: admin.id,
       username: admin.username,
       name: admin.name || "Administrator",
-      role: admin.role
+      email: admin.email || "deekshithatravels21@gmail.com",
+      phone: admin.phone || "6300540826",
+      role: admin.role,
+      updatedAt: admin.updatedAt || new Date().toISOString()
     }
   });
 });
@@ -68,7 +71,41 @@ router.get("/verify", (req, res) => {
       id: db.admin.id,
       username: db.admin.username,
       name: db.admin.name || "Administrator",
-      role: db.admin.role
+      email: db.admin.email || "deekshithatravels21@gmail.com",
+      phone: db.admin.phone || "6300540826",
+      role: db.admin.role,
+      updatedAt: db.admin.updatedAt || new Date().toISOString()
+    }
+  });
+});
+
+// PUT /api/auth/profile - Update administrator profile information
+router.put("/profile", requireAuth, (req, res) => {
+  const { name, email, phone } = req.body;
+
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: "Administrator name is required" });
+  }
+
+  const db = getDb();
+  db.admin.name = name.trim();
+  if (email !== undefined) db.admin.email = email.trim();
+  if (phone !== undefined) db.admin.phone = phone.trim();
+  db.admin.updatedAt = new Date().toISOString();
+
+  saveDb(db);
+
+  return res.json({
+    success: true,
+    message: "Admin profile updated successfully",
+    user: {
+      id: db.admin.id,
+      username: db.admin.username,
+      name: db.admin.name,
+      email: db.admin.email || "",
+      phone: db.admin.phone || "",
+      role: db.admin.role,
+      updatedAt: db.admin.updatedAt
     }
   });
 });

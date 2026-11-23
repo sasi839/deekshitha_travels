@@ -6,15 +6,6 @@ import "./Footer.css";
 const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer({ onOpenAdmin }) {
-
-  const quickLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Our Vehicles", href: "#vehicles" },
-    { label: "Our Services", href: "#services" },
-    { label: "Contact Us", href: "#contact" }
-  ];
-
   const servicesList = [
     { label: "Taxi Services", href: "#services" },
     { label: "Local Travel", href: "#services" },
@@ -52,21 +43,7 @@ export default function Footer({ onOpenAdmin }) {
             </p>
           </div>
 
-          {/* Column 2 – Quick Links */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Quick Links</h4>
-            <ul className="footer-links-list">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="footer-link">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 – Our Services */}
+          {/* Column 2 – Our Services */}
           <div className="footer-col">
             <h4 className="footer-heading">Our Services</h4>
             <ul className="footer-links-list">
@@ -80,7 +57,7 @@ export default function Footer({ onOpenAdmin }) {
             </ul>
           </div>
 
-          {/* Column 4 – Contact Information */}
+          {/* Column 3 – Contact Information */}
           <div className="footer-col footer-col-contact">
             <h4 className="footer-heading">Contact Information</h4>
             <div className="footer-contact-items">

@@ -226,8 +226,22 @@ export const api = {
   },
 
   // ------------------------------------------------------------------------
-  // Admin Settings / Password
+  // Admin Profile & Settings
   // ------------------------------------------------------------------------
+  updateProfile: async (profileData) => {
+    const res = await fetch(`${BASE_URL}/auth/profile`, {
+      method: "PUT",
+      headers: getAuthHeaders(),
+      body: JSON.stringify(profileData)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || "Failed to update profile");
+    if (json.user) {
+      localStorage.setItem("admin_user", JSON.stringify(json.user));
+    }
+    return json;
+  },
+
   changePassword: async (currentPassword, newPassword) => {
     const res = await fetch(`${BASE_URL}/auth/change-password`, {
       method: "POST",

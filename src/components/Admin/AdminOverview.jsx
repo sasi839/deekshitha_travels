@@ -60,19 +60,19 @@ export default function AdminOverview({ sliders, vehicles, onNavigate, onOpenNew
           </div>
         </div>
 
-        <div className="admin-stat-card">
+        <div className="admin-stat-card" onClick={() => onNavigate("profile")} style={{ cursor: "pointer" }}>
           <div className="admin-stat-icon-wrap icon-blue">
             <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
             </svg>
           </div>
           <div className="admin-stat-info">
-            <span className="admin-stat-label">System Security</span>
+            <span className="admin-stat-label">Admin Profile</span>
             <div className="admin-stat-number-row">
-              <span className="admin-stat-text-status">Protected</span>
+              <span className="admin-stat-text-status">Active Account</span>
             </div>
-            <p className="admin-stat-desc">JWT session active &bull; Password encrypted</p>
+            <p className="admin-stat-desc">Click to update profile, password &amp; details</p>
           </div>
         </div>
       </div>
@@ -103,6 +103,10 @@ export default function AdminOverview({ sliders, vehicles, onNavigate, onOpenNew
 
           <button type="button" className="admin-btn admin-btn-outline" onClick={() => onNavigate("vehicles")}>
             Manage Fleet
+          </button>
+
+          <button type="button" className="admin-btn admin-btn-outline" onClick={() => onNavigate("profile")}>
+            Admin Profile
           </button>
         </div>
       </div>
