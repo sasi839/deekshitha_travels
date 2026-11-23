@@ -45,14 +45,14 @@
 
 /* --------------------------------------------------------------------------
    Cards Grid
-   Desktop: 3 per row
+   Desktop: 4 per row
    Tablet: 2 per row
    Mobile: 1 per row
    -------------------------------------------------------------------------- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   align-items: stretch;
 }
 
@@ -204,7 +204,7 @@
 /* --------------------------------------------------------------------------
    Responsive Styles
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 1120px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;

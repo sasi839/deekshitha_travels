@@ -34,8 +34,8 @@ export default function AboutSection() {
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
                 <div className="floating-badge-text">
-                  <span className="badge-title">Serving Tirupati & Region</span>
-                  <span className="badge-subtitle">Airport • Renigunta • City</span>
+                  <span className="badge-title">Serving Tirupati &amp; Nearby Areas</span>
+                  <span className="badge-subtitle">Tirupati • Renigunta • Tirupati Airport</span>
                 </div>
               </div>
             </div>

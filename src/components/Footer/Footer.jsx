@@ -2,8 +2,9 @@ import { BUSINESS_INFO } from "../../constants/businessInfo";
 import SSNexoraFooter from "./SSNexoraFooter";
 import "./Footer.css";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
 
   const quickLinks = [
     { label: "Home", href: "#home" },
@@ -14,10 +15,10 @@ export default function Footer() {
   ];
 
   const servicesList = [
-    { label: "Airport Taxi", href: "#services" },
-    { label: "Local Taxi Services", href: "#services" },
-    { label: "Car Rentals", href: "#services" },
-    { label: "Pickup and Drop Services", href: "#services" }
+    { label: "Taxi Services", href: "#services" },
+    { label: "Local Travel", href: "#services" },
+    { label: "Airport Pickup and Drop", href: "#services" },
+    { label: "Car Rentals", href: "#services" }
   ];
 
   const serviceAreas = ["Tirupati", "Renigunta", "Tirupati Airport"];
@@ -44,7 +45,7 @@ export default function Footer() {
               </div>
             </a>
             <p className="footer-about-text">
-              Your trusted travel partner for comfortable taxi services and car rentals in Tirupati, Renigunta and nearby areas.
+              Your trusted travel partner for reliable taxi services, local travel, airport pickup and drop, and car rentals across Tirupati, Renigunta, and Tirupati Airport.
             </p>
           </div>
 
@@ -108,7 +109,7 @@ export default function Footer() {
                     <path d="M12.031 2C6.5 2 2 6.5 2 12.031c0 1.969.563 3.813 1.547 5.375L2 22l4.75-1.516a10.024 10.024 0 0 0 5.281 1.484c5.531 0 10.031-4.5 10.031-10.031S17.562 2 12.031 2zm0 18.25c-1.688 0-3.25-.453-4.609-1.25l-.328-.188-3.047.969.984-2.969-.219-.344A8.17 8.17 0 0 1 3.813 12c0-4.531 3.688-8.219 8.218-8.219 4.531 0 8.219 3.688 8.219 8.219 0 4.531-3.688 8.25-8.219 8.25zm4.516-6.172c-.25-.125-1.469-.719-1.688-.813-.234-.094-.406-.125-.578.125-.172.25-.656.813-.813.984-.141.156-.3.188-.547.063-.25-.125-1.047-.391-2-1.234-.734-.656-1.234-1.469-1.375-1.719-.141-.25-.016-.391.109-.516.109-.109.25-.3.375-.453.125-.156.172-.25.25-.422.078-.172.047-.328-.016-.453-.063-.125-.578-1.391-.797-1.906-.219-.5-.438-.438-.594-.438h-.516c-.172 0-.453.063-.688.313-.234.25-.906.891-.906 2.156 0 1.281.938 2.516 1.063 2.688.141.172 1.844 2.828 4.469 3.969.625.266 1.109.438 1.484.563.625.203 1.203.172 1.656.109.5-.078 1.469-.609 1.688-1.203.203-.594.203-1.109.141-1.203-.047-.109-.219-.172-.469-.297z" />
                   </svg>
                 </div>
-                <span>WhatsApp: {BUSINESS_INFO.phone}</span>
+                <span>WhatsApp: +91 {BUSINESS_INFO.phone}</span>
               </a>
 
               {/* Location */}
@@ -142,7 +143,7 @@ export default function Footer() {
         {/* 3. Copyright Section */}
         <div className="footer-copyright-strip">
           <p className="copyright-text">
-            © 2026 Deekshitha Travels. All Rights Reserved.
+            © {CURRENT_YEAR} Deekshitha Travels. All Rights Reserved.
           </p>
           <p className="copyright-subtext">
             Taxi Services & Car Rentals in Tirupati

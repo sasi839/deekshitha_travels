@@ -12,8 +12,9 @@ import "./SSNexoraFooter.css";
  * - Services: WEB DEVELOPMENT • SOFTWARE • AI SOLUTIONS
  * - Copyright: © SS Nexora Technologies
  */
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function SSNexoraFooter() {
-  const currentYear = new Date().getFullYear();
 
   return (
     <div className="ss-nexora-signature-footer" role="contentinfo" aria-label="Website Developed by SS Nexora Technologies">
@@ -39,7 +40,7 @@ export default function SSNexoraFooter() {
           </div>
 
           <p className="ss-nexora-copyright">
-            © {currentYear} SS Nexora Technologies
+            © {CURRENT_YEAR} SS Nexora Technologies
           </p>
         </div>
       </div>

@@ -3,17 +3,17 @@ import { BUSINESS_INFO } from "../../constants/businessInfo";
 import { SAMPLE_VEHICLES } from "../../data/vehiclesData";
 import "./EnquiryForm.css";
 
-export default function EnquiryForm() {
-  const today = new Date().toISOString().split("T")[0];
+const TODAY = new Date().toISOString().split("T")[0];
 
+export default function EnquiryForm() {
   const [formData, setFormData] = useState({
     customerName: "",
     mobileNumber: "",
     pickupLocation: "",
     destination: "",
-    travelDate: today,
+    travelDate: TODAY,
     preferredVehicle: SAMPLE_VEHICLES[0]?.name || "Sedan (Swift Dzire / Etios)",
-    tripType: "Local Trip",
+    tripType: "Taxi Services",
     additionalRequirements: ""
   });
 
@@ -21,11 +21,11 @@ export default function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const tripTypes = [
-    "Local Trip",
-    "Airport Pickup",
-    "Airport Drop",
-    "Outstation",
-    "Car Rental"
+    "Taxi Services",
+    "Local Travel",
+    "Airport Pickup and Drop",
+    "Car Rentals",
+    "Outstation Trip"
   ];
 
   const handleChange = (e) => {
@@ -208,7 +208,7 @@ export default function EnquiryForm() {
                   type="date"
                   id="travelDate"
                   name="travelDate"
-                  min={today}
+                  min={TODAY}
                   value={formData.travelDate}
                   onChange={handleChange}
                   className={`form-input form-date-input ${errors.travelDate ? "input-error" : ""}`}

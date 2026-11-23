@@ -9,13 +9,13 @@ export default function ServicesSection() {
         {/* Section Header */}
         <header className="services-header">
           <span className="section-badge">What We Offer</span>
-          <h2 className="services-title">Our Travel Services</h2>
+          <h2 className="services-title">Our Services</h2>
           <p className="services-subtitle">
-            Reliable travel solutions for your everyday journeys.
+            Reliable taxi services, local travel, airport transfers, and car rentals.
           </p>
         </header>
 
-        {/* 3 Services Cards Grid */}
+        {/* 4 Services Cards Grid */}
         <div className="services-grid">
           {SERVICES_LIST.map((service) => {
             const encodedMsg = encodeURIComponent(service.whatsappText);
@@ -35,17 +35,23 @@ export default function ServicesSection() {
                   
                   {/* Service Icon Badge */}
                   <div className="service-icon-badge" aria-hidden="true">
-                    {service.icon === "plane" && (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z" />
-                      </svg>
-                    )}
-                    {service.icon === "car" && (
+                    {(service.icon === "taxi" || service.icon === "car") && (
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
                         <circle cx="7" cy="17" r="2" />
                         <path d="M9 17h6" />
                         <circle cx="17" cy="17" r="2" />
+                      </svg>
+                    )}
+                    {service.icon === "map-pin" && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    )}
+                    {service.icon === "plane" && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z" />
                       </svg>
                     )}
                     {service.icon === "key" && (
