@@ -30,20 +30,26 @@ export const BUSINESS_INFO = {
 export const HERO_SLIDES = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1920&q=80",
-    alt: "Deekshitha Travels taxi services and car rentals in Tirupati",
-    badge: "Taxi Services & Car Rentals"
+    image: "/images/hero/tirumala_temple_gopuram.webp",
+    alt: "Tirumala Sri Venkateswara Swamy Temple Gopurams and Golden Ananda Nilayam Vimana in Tirupati",
+    badge: "Tirumala Sri Venkateswara Swamy Temple"
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80",
-    alt: "Airport pickup and drop transfers at Tirupati Airport",
-    badge: "Airport Pickup & Drop"
+    image: "/images/hero/tirumala_ghat_road.webp",
+    alt: "Scenic Tirumala Ghat Road winding through lush green Seshachalam Hills, Tirupati",
+    badge: "Tirumala Mountain Ghat Road"
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1920&q=80",
-    alt: "Local travel and car rental services across Tirupati and Renigunta",
-    badge: "Local Travel & Car Rentals"
+    image: "/images/hero/padmavathi_ammavari_temple.webp",
+    alt: "Sri Padmavathi Ammavari Temple traditional architecture in Tiruchanur, Tirupati",
+    badge: "Sri Padmavathi Ammavari Temple, Tiruchanur"
+  },
+  {
+    id: 4,
+    image: "/images/hero/kapila_theertham.webp",
+    alt: "Kapila Theertham Temple and natural sacred waterfall in Tirupati at the foot of Seshachalam hills",
+    badge: "Kapila Theertham Temple & Waterfalls"
   }
 ];

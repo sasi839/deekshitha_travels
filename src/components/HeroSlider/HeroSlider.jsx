@@ -79,7 +79,7 @@ export default function HeroSlider() {
       {/* Hero Content (Floating over slides) */}
       <div className="hero-content-container">
         <div className="hero-content-inner">
-          {/* Location Badge */}
+          {/* Location & Temple Destination Badge */}
           <div className="hero-location-badge">
             <svg
               className="location-icon"
@@ -94,7 +94,9 @@ export default function HeroSlider() {
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span>{BUSINESS_INFO.locationHighlight}</span>
+            <span key={currentSlide} className="badge-fade-text">
+              {HERO_SLIDES[currentSlide]?.badge || BUSINESS_INFO.locationHighlight}
+            </span>
           </div>
 
           {/* Main Heading */}
@@ -104,7 +106,7 @@ export default function HeroSlider() {
 
           {/* Supporting Text */}
           <p className="hero-subtitle">
-            Reliable Taxi Services & Car Rentals in Tirupati.
+            Reliable cabs for Tirumala darshan, temple visits &amp; airport transfers.
           </p>
 
           {/* Call to Action Buttons */}
