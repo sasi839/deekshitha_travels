@@ -1,8 +1,31 @@
+import { useState, useEffect } from "react";
 import VehicleCard from "./VehicleCard";
 import { SAMPLE_VEHICLES } from "../../data/vehiclesData";
+import { api } from "../../services/api";
 import "./VehicleFleet.css";
 
 export default function VehicleFleet() {
+  const [vehicles, setVehicles] = useState(SAMPLE_VEHICLES);
+
+  // Fetch active vehicles from dynamic backend API
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchFleet() {
+      try {
+        const dynamicVehicles = await api.getPublicVehicles();
+        if (isMounted && Array.isArray(dynamicVehicles) && dynamicVehicles.length > 0) {
+          setVehicles(dynamicVehicles);
+        }
+      } catch (err) {
+        console.warn("Using offline vehicle fleet fallback:", err);
+      }
+    }
+    fetchFleet();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <section id="vehicles" className="vehicle-fleet-section" aria-label="Our Vehicle Fleet">
       <div className="vehicle-fleet-container">
@@ -20,7 +43,7 @@ export default function VehicleFleet() {
 
         {/* Vehicles Grid */}
         <div className="vehicles-grid">
-          {SAMPLE_VEHICLES.map((vehicle) => (
+          {vehicles.map((vehicle) => (
             <VehicleCard key={vehicle.id} vehicle={vehicle} />
           ))}
         </div>

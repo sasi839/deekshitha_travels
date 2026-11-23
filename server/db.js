@@ -1,0 +1,260 @@
+import fs from "fs";
+import path from "path";
+import bcrypt from "bcryptjs";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const DATA_DIR = path.resolve(__dirname, "data");
+const DB_FILE = path.join(DATA_DIR, "database.json");
+const UPLOAD_DIR = path.resolve(__dirname, "../public/uploads");
+
+// Ensure data and upload directories exist
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+if (!fs.existsSync(UPLOAD_DIR)) {
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+}
+
+// Initial seed data
+const INITIAL_SLIDERS = [
+  {
+    id: "slider-1",
+    image: "/images/hero/tirumala_temple_gopuram.webp",
+    alt: "Tirumala Sri Venkateswara Swamy Temple Gopurams and Golden Ananda Nilayam in Tirupati",
+    badge: "Tirumala Sri Venkateswara Swamy Temple",
+    title: "Tirupati & Tirumala Cabs",
+    subtitle: "Reliable temple darshan & airport taxi service.",
+    buttonText: "Call Now",
+    whatsappText: "WhatsApp",
+    order: 1,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "slider-2",
+    image: "/images/hero/tirumala_ghat_road.webp",
+    alt: "Scenic Tirumala Ghat Road winding through lush green Seshachalam Hills, Tirupati",
+    badge: "Tirumala Mountain Ghat Road",
+    title: "Tirupati & Tirumala Cabs",
+    subtitle: "Reliable temple darshan & airport taxi service.",
+    buttonText: "Call Now",
+    whatsappText: "WhatsApp",
+    order: 2,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "slider-3",
+    image: "/images/hero/padmavathi_ammavari_temple.webp",
+    alt: "Sri Padmavathi Ammavari Temple traditional architecture in Tiruchanur, Tirupati",
+    badge: "Sri Padmavathi Ammavari Temple, Tiruchanur",
+    title: "Tirupati & Tirumala Cabs",
+    subtitle: "Reliable temple darshan & airport taxi service.",
+    buttonText: "Call Now",
+    whatsappText: "WhatsApp",
+    order: 3,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "slider-4",
+    image: "/images/hero/kapila_theertham.webp",
+    alt: "Kapila Theertham Temple and natural sacred waterfall in Tirupati at the foot of Seshachalam hills",
+    badge: "Kapila Theertham Temple & Waterfalls",
+    title: "Tirupati & Tirumala Cabs",
+    subtitle: "Reliable temple darshan & airport taxi service.",
+    buttonText: "Call Now",
+    whatsappText: "WhatsApp",
+    order: 4,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  }
+];
+
+const INITIAL_VEHICLES = [
+  {
+    id: "sedan-dzire",
+    name: "Sedan (Swift Dzire / Etios)",
+    model: "Maruti Swift Dzire / Toyota Etios",
+    category: "Prime Sedan",
+    image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80",
+    image_alt: "Maruti Suzuki Dzire AC sedan taxi in Tirupati",
+    seating_capacity: "4 Seats",
+    luggage_capacity: "2-3 Bags",
+    is_ac: true,
+    ac_label: "AC",
+    description: "Comfortable and economical sedan ideal for couples, small families, city transit, and Tirupati Airport pickup and drop.",
+    price_display: "Tariff on Request",
+    price_note: "Contact for custom quotes",
+    badge: "Popular Choice",
+    order: 1,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "suv-innova-crysta",
+    name: "Toyota Innova Crysta",
+    model: "Innova Crysta 2.4 VX/ZX",
+    category: "Family & Pilgrim SUV",
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
+    image_alt: "Toyota Innova Crysta MPV for Tirupati travel and Tirumala darshan",
+    seating_capacity: "6-7 Seats",
+    luggage_capacity: "4 Bags",
+    is_ac: true,
+    ac_label: "Dual AC",
+    description: "Spacious and reliable MPV with premium legroom, perfect for family temple pilgrimage and long outstation journeys.",
+    price_display: "Tariff on Request",
+    price_note: "Custom pilgrim packages",
+    badge: "Pilgrimage Favorite",
+    order: 2,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "suv-hycross-fortuner",
+    name: "Toyota Innova Hycross / Premium SUV",
+    model: "Toyota Hycross Hybrid",
+    category: "Executive Travel",
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80",
+    image_alt: "Premium SUV for executive travel and Tirupati airport pickup",
+    seating_capacity: "6-7 Seats",
+    luggage_capacity: "4-5 Bags",
+    is_ac: true,
+    ac_label: "Dual-zone AC",
+    description: "Top-tier comfort, smooth suspension, and refined interiors for VIP visits, corporate travel, and special trips.",
+    price_display: "Tariff on Request",
+    price_note: "Available on advance booking",
+    badge: "Executive",
+    order: 3,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "mpv-ertiga",
+    name: "Maruti Suzuki Ertiga",
+    model: "Maruti Ertiga ZXi",
+    category: "Comfort MPV",
+    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80",
+    image_alt: "Maruti Ertiga family MPV taxi in Tirupati",
+    seating_capacity: "6 Seats",
+    luggage_capacity: "3 Bags",
+    is_ac: true,
+    ac_label: "AC",
+    description: "Versatile and comfortable 6-seater vehicle, ideal for small families, local Tirupati visits, and airport transfers.",
+    price_display: "Tariff on Request",
+    price_note: "Affordable family packages",
+    badge: "Family Choice",
+    order: 4,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "hatchback-swift",
+    name: "Hatchback (Swift / WagonR)",
+    model: "Maruti Swift / WagonR",
+    category: "Budget City Ride",
+    image: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80",
+    image_alt: "Compact hatchback taxi for local Tirupati travel",
+    seating_capacity: "4 Seats",
+    luggage_capacity: "2 Bags",
+    is_ac: true,
+    ac_label: "AC",
+    description: "Agile, budget-friendly ride ideal for quick city travel, local errands, and point-to-point transit in Tirupati.",
+    price_display: "Tariff on Request",
+    price_note: "Affordable point-to-point",
+    badge: "Budget Friendly",
+    order: 5,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: "van-tempo-traveller",
+    name: "Force Tempo Traveller",
+    model: "Force Traveller 3350",
+    category: "Group Tour Van",
+    image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80",
+    image_alt: "Tempo Traveller group van for Tirupati temple tours",
+    seating_capacity: "12-14 Seats",
+    luggage_capacity: "8-10 Bags",
+    is_ac: true,
+    ac_label: "Dual AC",
+    description: "High-capacity, air-conditioned passenger van designed for large family pilgrim groups, wedding guests, and tour parties.",
+    price_display: "Tariff on Request",
+    price_note: "Package rates on call",
+    badge: "Large Groups",
+    order: 6,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  }
+];
+
+// Default admin: username "admin", password "admin123" (stored securely as bcrypt hash)
+const DEFAULT_ADMIN = {
+  id: "admin-1",
+  username: "admin",
+  passwordHash: bcrypt.hashSync("admin123", 10),
+  role: "admin",
+  name: "Deekshitha Travels Administrator"
+};
+
+function initDatabase() {
+  if (!fs.existsSync(DB_FILE)) {
+    const initialData = {
+      admin: DEFAULT_ADMIN,
+      sliders: INITIAL_SLIDERS,
+      vehicles: INITIAL_VEHICLES,
+      settings: {
+        businessName: "Deekshitha Travels",
+        phone: "6300540826",
+        phoneDisplay: "+91 63005 40826",
+        email: "deekshithatravels21@gmail.com",
+        whatsapp: "916300540826"
+      }
+    };
+    fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), "utf8");
+    return initialData;
+  }
+  try {
+    const raw = fs.readFileSync(DB_FILE, "utf8");
+    return JSON.parse(raw);
+  } catch {
+    const initialData = {
+      admin: DEFAULT_ADMIN,
+      sliders: INITIAL_SLIDERS,
+      vehicles: INITIAL_VEHICLES,
+      settings: {}
+    };
+    fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), "utf8");
+    return initialData;
+  }
+}
+
+let dbCache = initDatabase();
+
+export function getDb() {
+  if (!dbCache) {
+    dbCache = initDatabase();
+  }
+  return dbCache;
+}
+
+export function saveDb(data) {
+  dbCache = data;
+  const tempPath = `${DB_FILE}.tmp`;
+  fs.writeFileSync(tempPath, JSON.stringify(data, null, 2), "utf8");
+  fs.renameSync(tempPath, DB_FILE);
+  return dbCache;
+}

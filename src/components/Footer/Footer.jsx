@@ -5,7 +5,7 @@ import "./Footer.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export default function Footer() {
+export default function Footer({ onOpenAdmin }) {
 
   const quickLinks = [
     { label: "Home", href: "#home" },
@@ -148,9 +148,26 @@ export default function Footer() {
           <p className="copyright-text">
             © {CURRENT_YEAR} Deekshitha Travels. All Rights Reserved.
           </p>
-          <p className="copyright-subtext">
-            Taxi Services & Car Rentals in Tirupati
-          </p>
+          <div className="copyright-links-row">
+            <span className="copyright-subtext">
+              Taxi Services &amp; Car Rentals in Tirupati
+            </span>
+            <span className="copyright-dot">•</span>
+            <a
+              href="#/admin"
+              className="footer-admin-link"
+              onClick={(e) => {
+                if (onOpenAdmin) {
+                  e.preventDefault();
+                  window.location.hash = "/admin";
+                  onOpenAdmin();
+                }
+              }}
+              title="Administrator Login Portal"
+            >
+              Admin Portal
+            </a>
+          </div>
         </div>
       </div>
 

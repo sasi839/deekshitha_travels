@@ -52,8 +52,8 @@ export default function Navbar() {
               src={logoImg}
               alt="Deekshitha Travels Logo"
               className="navbar-brand-logo"
-              width="80"
-              height="40"
+              width="64"
+              height="32"
               loading="eager"
             />
           </div>

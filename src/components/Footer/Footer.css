@@ -251,6 +251,31 @@
   margin: 0;
 }
 
+.copyright-links-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.copyright-dot {
+  color: #475569;
+  font-size: 0.75rem;
+}
+
+.footer-admin-link {
+  font-size: 0.76rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 2px 4px;
+}
+
+.footer-admin-link:hover {
+  color: var(--color-primary-yellow);
+  text-decoration: underline;
+}
+
 /* --------------------------------------------------------------------------
    Responsive Layout (Desktop, Tablet, Mobile)
    -------------------------------------------------------------------------- */
