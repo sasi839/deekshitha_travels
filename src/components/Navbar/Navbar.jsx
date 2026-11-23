@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BUSINESS_INFO } from "../../constants/businessInfo";
+import logoImg from "../../assets/logo.webp";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -45,23 +46,16 @@ export default function Navbar() {
     <header className={`navbar-header ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         {/* Brand Logo */}
-        <a href="#home" className="navbar-brand" onClick={() => handleLinkClick("#home")}>
-          <div className="brand-icon-wrapper">
-            <svg
-              className="brand-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-              <circle cx="7" cy="17" r="2" />
-              <path d="M9 17h6" />
-              <circle cx="17" cy="17" r="2" />
-            </svg>
+        <a href="#home" className="navbar-brand" onClick={() => handleLinkClick("#home")} aria-label="Deekshitha Travels Home">
+          <div className="brand-logo-wrapper">
+            <img
+              src={logoImg}
+              alt="Deekshitha Travels Logo"
+              className="navbar-brand-logo"
+              width="80"
+              height="40"
+              loading="eager"
+            />
           </div>
           <div className="brand-text">
             <span className="brand-title">DEEKSHITHA</span>
@@ -132,9 +126,18 @@ export default function Navbar() {
 
       <div className={`mobile-nav-drawer ${isMenuOpen ? "open" : ""}`}>
         <div className="mobile-drawer-header">
-          <div className="brand-text">
-            <span className="brand-title">DEEKSHITHA</span>
-            <span className="brand-subtitle">TRAVELS</span>
+          <div className="mobile-drawer-brand">
+            <img
+              src={logoImg}
+              alt="Deekshitha Travels Logo"
+              className="mobile-brand-logo"
+              width="64"
+              height="32"
+            />
+            <div className="brand-text">
+              <span className="brand-title">DEEKSHITHA</span>
+              <span className="brand-subtitle">TRAVELS</span>
+            </div>
           </div>
           <button
             type="button"

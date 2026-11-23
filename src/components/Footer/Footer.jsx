@@ -1,5 +1,6 @@
 import { BUSINESS_INFO } from "../../constants/businessInfo";
 import SSNexoraFooter from "./SSNexoraFooter";
+import logoImg from "../../assets/logo.webp";
 import "./Footer.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -31,13 +32,15 @@ export default function Footer() {
           {/* Column 1 – Business Identity */}
           <div className="footer-col footer-col-brand">
             <a href="#home" className="footer-logo" aria-label="Deekshitha Travels Home">
-              <div className="footer-logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <path d="M9 17h6" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
+              <div className="footer-logo-wrapper">
+                <img
+                  src={logoImg}
+                  alt="Deekshitha Travels Logo"
+                  className="footer-brand-logo"
+                  width="76"
+                  height="38"
+                  loading="lazy"
+                />
               </div>
               <div className="footer-logo-text">
                 <span className="brand-title">DEEKSHITHA</span>

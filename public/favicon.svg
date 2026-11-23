@@ -1,21 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#121417" />
-  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#F5B014" stroke-width="2" stroke-opacity="0.3" />
-  <g transform="translate(10, 14)">
-    <!-- Stylized Taxi / Travel Car -->
-    <path d="M36 24h3c1 0 1.8-.7 2-1.7l1-4.3c.3-1.3-.7-2.5-2-2.5h-2.5l-2.4-5.2C34.5 9 33.2 8 31.8 8H12.2c-1.4 0-2.7 1-3.3 2.3L6.5 15.5H4c-1.3 0-2.3 1.2-2 2.5l1 4.3C3.2 23.3 4 24 5 24h3" 
-          fill="none" 
-          stroke="#F5B014" 
-          stroke-width="3" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" />
-    <!-- Wheels -->
-    <circle cx="12" cy="24" r="4" fill="#121417" stroke="#F5B014" stroke-width="3" />
-    <circle cx="32" cy="24" r="4" fill="#121417" stroke="#F5B014" stroke-width="3" />
-    <path d="M16 24h12" stroke="#F5B014" stroke-width="3" stroke-linecap="round" />
-    <!-- Window Divider -->
-    <path d="M21 8.5v7" stroke="#F5B014" stroke-width="2.5" stroke-linecap="round" />
-    <!-- Taxi Light on Roof -->
-    <rect x="18" y="4" width="8" height="3" rx="1" fill="#F5B014" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="28" fill="#121417"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" fill="none" stroke="#F5B014" stroke-width="2" stroke-opacity="0.35"/>
+  <image href="/logo.png" x="8" y="24" width="112" height="80" preserveAspectRatio="xMidYMid meet"/>
 </svg>
