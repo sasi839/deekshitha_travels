@@ -34,6 +34,8 @@ export const ABOUT_CONTENT = {
   ]
 };
 
+const SUPABASE_STORAGE_SERVICES_BASE = "https://vjaozqvobkazbgiztmxx.supabase.co/storage/v1/object/public/services";
+
 export const SERVICES_LIST = [
   {
     id: "taxi-services",
@@ -43,7 +45,7 @@ export const SERVICES_LIST = [
     rateNote: "Affordable km rates",
     features: ["Round & One-Way", "Doorstep Pickup"],
     description: "Reliable, comfortable taxi services for round trips, one-way drops, and outstation travel across the Tirupati region.",
-    image: "/images/services/taxi_services.webp",
+    image: `${SUPABASE_STORAGE_SERVICES_BASE}/taxi_services.webp`,
     imageAlt: "Deekshitha Travels taxi services in Tirupati",
     icon: "taxi",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Taxi Services."
@@ -56,7 +58,7 @@ export const SERVICES_LIST = [
     rateNote: "Hourly & full-day",
     features: ["Temple Packages", "City Errand Drops"],
     description: "Convenient local travel solutions across Tirupati for temple darshan, city errands, sightseeing, and railway transfers.",
-    image: "/images/services/local_travel.webp",
+    image: `${SUPABASE_STORAGE_SERVICES_BASE}/local_travel.webp`,
     imageAlt: "Local travel taxi services in Tirupati",
     icon: "map-pin",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Local Travel in Tirupati."
@@ -69,7 +71,7 @@ export const SERVICES_LIST = [
     rateNote: "Fixed transparent fares",
     features: ["Flight Tracking", "Luggage Support"],
     description: "Prompt airport transfer services connecting Tirupati Airport, Renigunta, and Tirupati city with on-time pickups.",
-    image: "/images/services/airport_transfers.webp",
+    image: `${SUPABASE_STORAGE_SERVICES_BASE}/airport_transfers.webp`,
     imageAlt: "Airport pickup and drop services at Tirupati Airport",
     icon: "plane",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Airport Pickup and Drop services."
@@ -82,7 +84,7 @@ export const SERVICES_LIST = [
     rateNote: "Driver included",
     features: ["Sedan & MPV", "Family & Corporate"],
     description: "Vehicle rental packages with well-maintained cars for personal, family, or corporate travel needs.",
-    image: "/images/services/car_rentals.webp",
+    image: `${SUPABASE_STORAGE_SERVICES_BASE}/car_rentals.webp`,
     imageAlt: "Car rental options by Deekshitha Travels in Tirupati",
     icon: "key",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Car Rentals."

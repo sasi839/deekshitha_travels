@@ -79,6 +79,24 @@ export default function AdminOverview({ sliders, vehicles, onNavigate, onOpenNew
           </div>
         </div>
 
+        <div className="admin-stat-card" onClick={() => onNavigate("services")} style={{ cursor: "pointer" }}>
+          <div className="admin-stat-icon-wrap icon-purple" style={{ background: "rgba(168, 85, 247, 0.15)", color: "#a855f7" }}>
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+              <line x1="8" y1="2" x2="8" y2="18" />
+              <line x1="16" y1="6" x2="16" y2="22" />
+            </svg>
+          </div>
+          <div className="admin-stat-info">
+            <span className="admin-stat-label">Services &amp; Hubs</span>
+            <div className="admin-stat-number-row">
+              <span className="admin-stat-number">9+</span>
+              <span className="admin-stat-badge badge-active">Supabase Hubs</span>
+            </div>
+            <p className="admin-stat-desc">Click to manage locations, darshan hubs &amp; packages</p>
+          </div>
+        </div>
+
         <div className="admin-stat-card" onClick={() => onNavigate("profile")} style={{ cursor: "pointer" }}>
           <div className="admin-stat-icon-wrap icon-blue">
             <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none">
@@ -122,6 +140,10 @@ export default function AdminOverview({ sliders, vehicles, onNavigate, onOpenNew
 
           <button type="button" className="admin-btn admin-btn-outline" onClick={() => onNavigate("vehicles")}>
             Manage Fleet
+          </button>
+
+          <button type="button" className="admin-btn admin-btn-outline" onClick={() => onNavigate("services")}>
+            Services &amp; Hubs
           </button>
 
           <button type="button" className="admin-btn admin-btn-outline" onClick={() => onNavigate("profile")}>

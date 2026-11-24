@@ -21,13 +21,33 @@ function formatVehicleRow(row) {
   const images = Array.isArray(row.image_urls) ? row.image_urls : (row.image_urls ? [row.image_urls] : []);
   const primaryImage = images[0] || row.image || "/images/vehicles/maruti_suzuki_swift_dzire.jpg";
 
+  let category = row.category;
+  if (!category) {
+    const vn = (row.vehicle_name || row.name || "").toLowerCase();
+    if (vn.includes("tempo") || vn.includes("traveller")) category = "Luxury Group Van";
+    else if (vn.includes("innova")) category = "Family & Pilgrim SUV";
+    else if (vn.includes("ertiga")) category = "Comfort MPV";
+    else if (vn.includes("dzire") || vn.includes("etios")) category = "Prime Sedan";
+    else category = "Prime Taxi";
+  }
+
+  let badge = row.badge;
+  if (!badge) {
+    const order = row.display_order ?? row.order ?? 0;
+    if (order === 1) badge = "Popular Choice";
+    else if (order === 2) badge = "Family Favorite";
+    else if (order === 3) badge = "Pilgrimage Favorite";
+    else if (order === 4) badge = "Comfort Sedan";
+    else if (order === 5) badge = "Group Tour Special";
+  }
+
   return {
     id: row.id,
     vehicle_name: row.vehicle_name || row.name || "Customer Vehicle",
     vehicle_model: row.vehicle_model || row.model || "",
     name: row.vehicle_name || row.name || "Customer Vehicle",
     model: row.vehicle_model || row.model || "",
-    category: row.category || "Prime Taxi",
+    category,
     seating_capacity: row.seating_capacity || "4 Seats",
     luggage_capacity: row.luggage_capacity || "2 Bags",
     description: row.description || "",
@@ -42,7 +62,7 @@ function formatVehicleRow(row) {
     ac_label: row.seating_capacity && parseInt(row.seating_capacity) >= 6 ? "Dual AC" : "AC",
     price_display: "Tariff on Request",
     price_note: "Contact for custom quotes",
-    badge: row.display_order === 1 ? "Popular Choice" : (row.display_order === 3 ? "Pilgrimage Favorite" : ""),
+    badge: badge || "",
     createdAt: row.created_at,
     updatedAt: row.updated_at
   };
@@ -318,6 +338,99 @@ export const api = {
       }
     }
     return null;
+  },
+
+  getAdminLocations: async () => {
+    if (isSupabaseConfigured() && supabase) {
+      const { data, error } = await supabase
+        .from("service_locations")
+        .select("*")
+        .order("display_order", { ascending: true });
+
+      if (error) throw new Error(error.message);
+      return data || [];
+    }
+    return [];
+  },
+
+  createLocation: async (locData) => {
+    const location_name = locData.location_name || locData.name || "";
+    const location_category = locData.location_category || locData.category || "temples";
+    const description = locData.description || "";
+    const is_active = locData.is_active !== false && locData.active !== false;
+
+    if (isSupabaseConfigured() && supabase) {
+      const { data: maxRow } = await supabase
+        .from("service_locations")
+        .select("display_order")
+        .order("display_order", { ascending: false })
+        .limit(1);
+
+      const nextOrder = (maxRow?.[0]?.display_order || 0) + 1;
+
+      const { data, error } = await supabase
+        .from("service_locations")
+        .insert({
+          location_name,
+          location_category,
+          description,
+          is_active,
+          display_order: locData.display_order || nextOrder
+        })
+        .select()
+        .single();
+
+      if (error) throw new Error(error.message);
+      return data;
+    }
+    throw new Error("Supabase is not configured.");
+  },
+
+  updateLocation: async (id, locData) => {
+    if (isSupabaseConfigured() && supabase) {
+      const payload = {};
+      if (locData.location_name !== undefined) payload.location_name = locData.location_name;
+      if (locData.location_category !== undefined) payload.location_category = locData.location_category;
+      if (locData.description !== undefined) payload.description = locData.description;
+      if (locData.is_active !== undefined) payload.is_active = locData.is_active;
+      if (locData.display_order !== undefined) payload.display_order = locData.display_order;
+
+      const { data, error } = await supabase
+        .from("service_locations")
+        .update(payload)
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) throw new Error(error.message);
+      return data;
+    }
+    throw new Error("Supabase is not configured.");
+  },
+
+  toggleLocation: async (id, currentStatus) => {
+    if (isSupabaseConfigured() && supabase) {
+      const newActive = !currentStatus;
+      const { data, error } = await supabase
+        .from("service_locations")
+        .update({ is_active: newActive })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) throw new Error(error.message);
+      return data;
+    }
+    throw new Error("Supabase is not configured.");
+  },
+
+  deleteLocation: async (id) => {
+    if (isSupabaseConfigured() && supabase) {
+      const { error } = await supabase.from("service_locations").delete().eq("id", id);
+      if (error) throw new Error(error.message);
+      return { success: true };
+    }
+    throw new Error("Supabase is not configured.");
   },
 
   // ------------------------------------------------------------------------
@@ -677,6 +790,13 @@ export const api = {
   uploadSliderImage: async (file) => {
     if (isSupabaseConfigured() && supabase) {
       return await uploadToStorage("hero_sliders", file);
+    }
+    return await api.uploadImageFallback(file);
+  },
+
+  uploadServiceImage: async (file) => {
+    if (isSupabaseConfigured() && supabase) {
+      return await uploadToStorage("services", file);
     }
     return await api.uploadImageFallback(file);
   },

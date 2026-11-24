@@ -68,6 +68,17 @@ INSERT INTO public.vehicles (
     ARRAY['/images/vehicles/toyota_etios.jpg'],
     true,
     4
+),
+(
+    '11111111-1111-1111-1111-111111111105',
+    'Force Tempo Traveller',
+    'Tempo Traveller 3350 / Luxury',
+    '12-17 Seats',
+    '8-10 Bags',
+    'Spacious luxury high-roof tourist van with comfortable pushback seats, dual AC and ample luggage boot. Ideal for group pilgrimage darshan, large family outings, and outstation tours.',
+    ARRAY['/images/vehicles/force_tempo_traveller.jpg'],
+    true,
+    5
 );
 
 -- ----------------------------------------------------------------------------

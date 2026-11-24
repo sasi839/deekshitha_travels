@@ -19,31 +19,53 @@ export default function FloatingContactButtons() {
 
   return (
     <>
-      {/* 1. Persistent Floating "Book a Ride" Shortcut (Bottom-Left) */}
+      {/* 1. Persistent Floating "Book a Ride" Button (Bottom-Left) */}
       <div className="floating-book-container">
         <a
           href="#booking"
           onClick={scrollToBooking}
           className="floating-book-btn"
-          aria-label="Book a Ride - Scroll to booking form"
+          aria-label="Book a Ride - Scroll directly to taxi booking form"
         >
+          {/* Subtle Ambient Pulse Aura */}
+          <span className="book-btn-pulse-glow" aria-hidden="true" />
+
+          {/* Vehicle Icon Wrap */}
+          <span className="book-btn-icon-wrap" aria-hidden="true">
+            <svg
+              className="book-btn-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 3c-.1.2-.1.4-.1.6v4.5c0 .6.4 1 1 1h2" />
+              <circle cx="7" cy="17" r="2" />
+              <circle cx="17" cy="17" r="2" />
+            </svg>
+          </span>
+
+          {/* Text Content */}
+          <span className="book-btn-content">
+            <span className="book-btn-title">Book a Ride</span>
+            <span className="book-btn-micro">Instant Quote</span>
+          </span>
+
+          {/* Forward Arrow */}
           <svg
-            className="book-btn-icon"
+            className="book-btn-arrow"
             viewBox="0 0 24 24"
+            width="14"
+            height="14"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            strokeWidth="2.5"
             aria-hidden="true"
           >
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-            <line x1="16" y1="2" x2="16" y2="6" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-            <path d="m9 16 2 2 4-4" />
+            <polyline points="9 18 15 12 9 6" />
           </svg>
-          <span className="book-btn-text">Book a Ride</span>
         </a>
       </div>
 

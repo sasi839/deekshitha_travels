@@ -279,6 +279,31 @@
       "is_active": true,
       "createdAt": "2026-11-23T05:58:56.262Z",
       "updatedAt": "2026-11-23T05:58:56.262Z"
+    },
+    {
+      "id": "force-tempo-traveller",
+      "name": "Force Tempo Traveller",
+      "model": "Tempo Traveller 3350 / Luxury",
+      "vehicle_name": "Force Tempo Traveller",
+      "vehicle_model": "Tempo Traveller 3350 / Luxury",
+      "category": "Luxury Group Van",
+      "image": "/images/vehicles/force_tempo_traveller.jpg",
+      "image_urls": ["/images/vehicles/force_tempo_traveller.jpg"],
+      "image_alt": "Force Tempo Traveller 12-17 seater luxury tourist van for Tirupati and Tirumala group darshan",
+      "seating_capacity": "12-17 Seats",
+      "luggage_capacity": "8-10 Bags",
+      "is_ac": true,
+      "ac_label": "Dual AC",
+      "description": "Spacious luxury high-roof tourist van with comfortable pushback seats, dual AC and ample luggage boot. Ideal for group pilgrimage darshan, large family outings, and outstation tours.",
+      "price_display": "Tariff on Request",
+      "price_note": "Best group travel rates",
+      "badge": "Group Tour Special",
+      "order": 5,
+      "display_order": 5,
+      "active": true,
+      "is_active": true,
+      "createdAt": "2026-11-24T08:42:50.045Z",
+      "updatedAt": "2026-11-24T08:42:50.045Z"
     }
   ],
   "settings": {
