@@ -12,8 +12,23 @@ const DIST_PATH = path.resolve(__dirname, "../dist");
 // Serve frontend static files
 app.use(express.static(DIST_PATH));
 
+// Sitemap & Robots specific routes
+app.get("/sitemap.xml", (req, res) => {
+  res.setHeader("Content-Type", "application/xml; charset=utf-8");
+  res.sendFile(path.join(DIST_PATH, "sitemap.xml"));
+});
+
+app.get(/^\/sitemap\/?$/, (req, res) => {
+  res.redirect(301, "/sitemap.xml");
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.setHeader("Content-Type", "text/plain; charset=utf-8");
+  res.sendFile(path.join(DIST_PATH, "robots.txt"));
+});
+
 // SPA fallback for all remaining routes (e.g. /admin, /admin/login)
-app.get("*", (req, res) => {
+app.use((req, res) => {
   if (req.path.startsWith("/api/")) {
     return res.status(404).json({ error: "API endpoint not found" });
   }

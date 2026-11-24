@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BUSINESS_INFO } from "../../constants/businessInfo";
 import { APPROVED_VEHICLES } from "../../data/vehiclesData";
+import { api } from "../../services/api";
 import "./EnquiryForm.css";
 
 const TODAY = new Date().toISOString().split("T")[0];
 
 export default function EnquiryForm() {
+  const [vehiclesList, setVehiclesList] = useState(APPROVED_VEHICLES);
   const [formData, setFormData] = useState({
     customerName: "",
     mobileNumber: "",
@@ -21,6 +23,50 @@ export default function EnquiryForm() {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchLiveVehicles() {
+      try {
+        const dynamicVehicles = await api.getPublicVehicles();
+        if (!isMounted) return;
+        if (Array.isArray(dynamicVehicles) && dynamicVehicles.length > 0) {
+          setVehiclesList(dynamicVehicles);
+          setFormData((prev) => {
+            const currentSelected = (prev.preferredVehicle || "").trim().toLowerCase();
+            const exists = dynamicVehicles.some(
+              (v) => (v.vehicle_name || v.name || "").trim().toLowerCase() === currentSelected
+            );
+            if (!exists && dynamicVehicles[0]) {
+              return {
+                ...prev,
+                preferredVehicle: (dynamicVehicles[0].vehicle_name || dynamicVehicles[0].name || "").trim()
+              };
+            }
+            return prev;
+          });
+        }
+      } catch (err) {
+        console.warn("Using approved vehicles list for booking form:", err.message);
+      }
+    }
+
+    fetchLiveVehicles();
+
+    const handleSelectVehicle = (e) => {
+      const selectedName = e.detail?.vehicleName;
+      if (selectedName) {
+        setFormData((prev) => ({ ...prev, preferredVehicle: selectedName }));
+      }
+    };
+
+    window.addEventListener("deekshitha:select-vehicle", handleSelectVehicle);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener("deekshitha:select-vehicle", handleSelectVehicle);
+    };
+  }, []);
 
   const tripTypes = [
     "Local Sightseeing & Temple Darshan",
@@ -380,11 +426,15 @@ export default function EnquiryForm() {
                       onChange={handleChange}
                       className={`compact-select ${errors.preferredVehicle ? "field-error" : ""}`}
                     >
-                      {APPROVED_VEHICLES.map((v) => (
-                        <option key={v.id} value={v.vehicle_name}>
-                          {v.vehicle_name} ({v.seating_capacity})
-                        </option>
-                      ))}
+                      {vehiclesList.map((v) => {
+                        const vName = (v.vehicle_name || v.name || "").trim();
+                        const seating = v.seating_capacity ? ` (${v.seating_capacity})` : "";
+                        return (
+                          <option key={v.id || vName} value={vName}>
+                            {vName}{seating}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   {errors.preferredVehicle && <span className="compact-err">{errors.preferredVehicle}</span>}

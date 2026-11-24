@@ -149,6 +149,15 @@ export default function VehicleCard({ vehicle }) {
             target="_blank"
             rel="noopener noreferrer"
             className="vehicle-btn vehicle-btn-whatsapp"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(
+                  new CustomEvent("deekshitha:select-vehicle", {
+                    detail: { vehicleName: name }
+                  })
+                );
+              }
+            }}
             aria-label={`Enquire about ${name} on WhatsApp`}
           >
             <svg

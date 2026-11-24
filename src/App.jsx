@@ -30,6 +30,13 @@ export default function App() {
       if (typeof window === "undefined") return;
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
+
+      // Ensure sitemap navigation loads the raw XML file directly
+      if (path === "/sitemap" || path === "/sitemap/") {
+        window.location.replace("/sitemap.xml");
+        return;
+      }
+
       const isAdmin = (
         path.startsWith("/admin") ||
         hash.startsWith("#/admin") ||
