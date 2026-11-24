@@ -9,7 +9,7 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://deekshithatravels.com/logo.png</image:loc>
-      <image:title>Deekshitha Travels Taxi Services &amp; Car Rentals in Tirupati</image:title>
+      <image:title>Deekshitha Travels Taxi Services and Car Rentals in Tirupati</image:title>
       <image:caption>Official logo of Deekshitha Travels - Leading taxi and cab rental agency in Tirupati, Renigunta, and Tirupati Airport.</image:caption>
     </image:image>
     <image:image>
@@ -32,43 +32,93 @@
       <image:title>Kapila Theertham Temple and Waterfalls, Tirupati</image:title>
       <image:caption>Kapila Theertham Temple and natural sacred waterfall at the foot of Seshachalam Hills.</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/hero/tirupati_airport.webp</image:loc>
+      <image:title>Tirupati International Airport Taxi Transfer</image:title>
+      <image:caption>Punctual 24/7 airport taxi pickup and drop at Tirupati Airport Renigunta terminal.</image:caption>
+    </image:image>
   </url>
 
-  <!-- Services Section -->
+  <!-- Taxi & Rental Services -->
   <url>
-    <loc>https://deekshithatravels.com/#services</loc>
+    <loc>https://deekshithatravels.com/services</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/services/taxi_services.webp</image:loc>
+      <image:title>Taxi Services in Tirupati</image:title>
+      <image:caption>Round trip and one-way taxi services across Tirupati and outstation destinations.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/services/airport_transfers.webp</image:loc>
+      <image:title>Tirupati Airport Pickup and Drop</image:title>
+      <image:caption>Dedicated airport transfer taxi services with flight tracking.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/services/local_travel.webp</image:loc>
+      <image:title>Local City Travel and Temple Darshan</image:title>
+      <image:caption>Comfortable city rides for temple visits and sightseeing in Tirupati.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/services/car_rentals.webp</image:loc>
+      <image:title>Car Rentals in Tirupati</image:title>
+      <image:caption>Flexible car rental packages with verified chauffeurs for family and corporate travel.</image:caption>
+    </image:image>
   </url>
 
-  <!-- Vehicle Fleet Section -->
+  <!-- Vehicle Fleet -->
   <url>
-    <loc>https://deekshithatravels.com/#vehicles</loc>
+    <loc>https://deekshithatravels.com/vehicles</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/vehicles/maruti_suzuki_swift_dzire.webp</image:loc>
+      <image:title>Maruti Suzuki Swift Dzire Taxi in Tirupati</image:title>
+      <image:caption>Modern 4-seater AC sedan for city travel, darshan and airport transfers.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/vehicles/maruti_suzuki_ertiga.webp</image:loc>
+      <image:title>Maruti Suzuki Ertiga MPV Taxi in Tirupati</image:title>
+      <image:caption>Spacious 6-seater AC MPV for family temple pilgrimage and local tours.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/vehicles/toyota_innova.webp</image:loc>
+      <image:title>Toyota Innova Crysta Taxi for Tirumala Hills</image:title>
+      <image:caption>Premium 7-seater MPV for Tirumala ghat road travel and long-distance tours.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/vehicles/toyota_etios.webp</image:loc>
+      <image:title>Toyota Etios Sedan Taxi in Tirupati</image:title>
+      <image:caption>Comfortable sedan with ample luggage capacity for airport and city travel.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/vehicles/force_tempo_traveller.webp</image:loc>
+      <image:title>Force Tempo Traveller 12-17 Seater Tourist Van in Tirupati</image:title>
+      <image:caption>Luxury tourist van for large group pilgrimage darshan and outstation tours.</image:caption>
+    </image:image>
   </url>
 
   <!-- Destinations & Coverage Locations -->
   <url>
-    <loc>https://deekshithatravels.com/#locations</loc>
+    <loc>https://deekshithatravels.com/locations</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- About Company Section -->
+  <!-- About Company -->
   <url>
-    <loc>https://deekshithatravels.com/#about</loc>
+    <loc>https://deekshithatravels.com/about</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Online Taxi Booking & Enquiry -->
+  <!-- Taxi Booking & Contact -->
   <url>
-    <loc>https://deekshithatravels.com/#contact</loc>
+    <loc>https://deekshithatravels.com/contact</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>

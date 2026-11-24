@@ -16,6 +16,9 @@ export default function AboutSection() {
                 alt={ABOUT_CONTENT.imageAlt}
                 className="about-image"
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="450"
               />
               <div className="about-image-overlay" />
               {/* Highlight badge overlay */}

@@ -12,6 +12,13 @@ export const BUSINESS_INFO = {
   whatsappUrl: "https://wa.me/916300540826?text=Hello%20Deekshitha%20Travels%2C%20I%20would%20like%20to%20inquire%20about%20taxi%20services%20and%20car%20rentals.",
   locations: ["Tirupati", "Renigunta", "Tirupati Airport"],
   locationHighlight: "Tirupati | Renigunta | Tirupati Airport",
+  address: {
+    street: "Tirupati Central, Near Bus Stand & Railway Station",
+    city: "Tirupati",
+    state: "Andhra Pradesh",
+    pincode: "517501",
+    country: "India"
+  },
   services: [
     "Taxi Services",
     "Local Travel",

@@ -8,6 +8,7 @@ import ServiceLocations from "./components/Locations/ServiceLocations";
 import EnquiryForm from "./components/Enquiry/EnquiryForm";
 import Footer from "./components/Footer/Footer";
 import FloatingContactButtons from "./components/FloatingButtons/FloatingContactButtons";
+import { updateDocumentMetadata, getRouteMetadata } from "./utils/seo";
 import "./App.css";
 
 const AdminPanel = lazy(() => import("./components/Admin/AdminPanel"));
@@ -26,14 +27,59 @@ export default function App() {
 
   useEffect(() => {
     const handleRouteChange = () => {
+      if (typeof window === "undefined") return;
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
-      setIsAdminRoute(
+      const isAdmin = (
         path.startsWith("/admin") ||
         hash.startsWith("#/admin") ||
         hash.startsWith("#admin")
       );
+      setIsAdminRoute(isAdmin);
+
+      if (isAdmin) {
+        updateDocumentMetadata("/admin");
+      } else {
+        const cleanPath = path.replace(/\/+$/, "") || "/";
+        if (cleanPath !== "/") {
+          updateDocumentMetadata(cleanPath);
+        } else if (hash) {
+          const mappedPath = "/" + hash.replace(/^#\/?/, "").replace("booking", "contact");
+          updateDocumentMetadata(mappedPath);
+        } else {
+          updateDocumentMetadata("/");
+        }
+      }
     };
+
+    // Apply metadata on initial mount
+    handleRouteChange();
+
+    // Deep link scroll on direct URL navigation (e.g. /services, /vehicles)
+    if (typeof window !== "undefined") {
+      const initPath = window.location.pathname.toLowerCase();
+      const initHash = window.location.hash.toLowerCase();
+      const isCurrentAdmin = (
+        initPath.startsWith("/admin") ||
+        initHash.startsWith("#/admin") ||
+        initHash.startsWith("#admin")
+      );
+      if (!isCurrentAdmin) {
+        const cleanPath = initPath.replace(/\/+$/, "");
+        const meta = getRouteMetadata(cleanPath);
+        if (meta && meta.sectionId && meta.sectionId !== "home") {
+          setTimeout(() => {
+            const el = document.getElementById(meta.sectionId);
+            if (el) {
+              const navHeader = document.querySelector(".navbar-header");
+              const navOffset = navHeader ? navHeader.offsetHeight : 68;
+              const top = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+              window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+            }
+          }, 120);
+        }
+      }
+    }
 
     window.addEventListener("popstate", handleRouteChange);
     window.addEventListener("hashchange", handleRouteChange);
@@ -53,6 +99,7 @@ export default function App() {
       window.history.pushState({}, "", "/");
     }
     setIsAdminRoute(false);
+    updateDocumentMetadata("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

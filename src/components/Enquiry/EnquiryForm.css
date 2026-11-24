@@ -159,38 +159,56 @@
   line-height: 1.35;
 }
 
-/* Direct Call Card */
-.enquiry-call-card {
-  background: rgba(245, 176, 20, 0.06);
-  border: 1px solid rgba(245, 176, 20, 0.22);
-  border-radius: 12px;
-  padding: 0.85rem 1rem;
+/* Contact & Location Cards Wrap */
+.enquiry-contact-cards {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  flex-direction: column;
+  gap: 0.75rem;
   margin-top: auto;
 }
 
-.call-card-icon-wrap {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
+.enquiry-call-card,
+.enquiry-location-card {
+  background: rgba(245, 176, 20, 0.06);
+  border: 1px solid rgba(245, 176, 20, 0.22);
+  border-radius: 12px;
+  padding: 0.75rem 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.call-card-icon-wrap,
+.loc-card-icon-wrap {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   border-radius: 50%;
   background: #f5b014;
   color: #121417;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.call-card-details {
+.loc-card-icon-wrap {
+  background: rgba(245, 176, 20, 0.15);
+  border: 1px solid rgba(245, 176, 20, 0.35);
+  color: #f5b014;
+}
+
+.call-card-details,
+.loc-card-details {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+  min-width: 0;
 }
 
-.call-card-hint {
-  font-size: 0.72rem;
+.call-card-hint,
+.loc-card-hint {
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -198,7 +216,7 @@
 }
 
 .call-card-link {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 800;
   color: #f5b014;
   text-decoration: none;
@@ -209,6 +227,28 @@
 .call-card-link:hover {
   color: #ffc43a;
   text-decoration: underline;
+}
+
+.loc-card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  transition: color 0.2s ease;
+}
+
+.loc-card-link:hover {
+  color: #f5b014;
+}
+
+.loc-directions-tag {
+  color: #f5b014;
+  font-weight: 700;
+  font-size: 0.75rem;
 }
 
 /* --------------------------------------------------------------------------

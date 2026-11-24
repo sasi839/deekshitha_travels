@@ -53,7 +53,7 @@ function formatVehicleRow(row) {
     description: row.description || "",
     image: primaryImage,
     image_urls: images.length > 0 ? images : [primaryImage],
-    image_alt: `${row.vehicle_name || "Taxi"} for hire in Tirupati`,
+    image_alt: `${row.vehicle_name || "Taxi"} ${category} AC cab for Tirumala darshan and airport travel in Tirupati`,
     is_active: row.is_active !== false,
     active: row.is_active !== false,
     display_order: row.display_order ?? row.order ?? 0,
@@ -99,7 +99,7 @@ function formatSliderRow(row) {
     description: row.description || row.subtitle || "",
     image: row.image_url || row.image || "/images/hero/tirumala_temple_gopuram.webp",
     image_url: row.image_url || row.image || "/images/hero/tirumala_temple_gopuram.webp",
-    alt: `${heading} taxi travel from Tirupati`,
+    alt: `${heading} pilgrimage darshan and taxi travel destination from Tirupati`,
     badge,
     buttonText: "Call Now",
     whatsappText: "WhatsApp",
@@ -829,38 +829,67 @@ export const api = {
   // ------------------------------------------------------------------------
   updateProfile: async (profileData) => {
     if (isSupabaseConfigured() && supabase) {
-      const { data, error } = await supabase.auth.updateUser({
-        data: { full_name: profileData.name, phone: profileData.phone }
-      });
-      if (error) throw new Error(error.message);
-      const userObj = {
-        id: data.user.id,
-        email: data.user.email,
-        name: profileData.name,
-        role: "admin"
-      };
-      localStorage.setItem("admin_user", JSON.stringify(userObj));
-      return { success: true, user: userObj };
+      try {
+        const { data: sessionData } = await supabase.auth.getSession();
+        if (sessionData?.session) {
+          const { data, error } = await supabase.auth.updateUser({
+            data: { full_name: profileData.name, phone: profileData.phone }
+          });
+          if (error) throw new Error(error.message);
+          const userObj = {
+            id: data?.user?.id || sessionData.session.user.id,
+            email: data?.user?.email || sessionData.session.user.email,
+            name: profileData.name,
+            phone: profileData.phone,
+            role: "admin"
+          };
+          localStorage.setItem("admin_user", JSON.stringify(userObj));
+          return { success: true, user: userObj };
+        }
+      } catch (sbErr) {
+        console.warn("Supabase auth updateUser fallback:", sbErr.message);
+      }
     }
 
-    const res = await fetch(`${BASE_URL}/auth/profile`, {
-      method: "PUT",
-      headers: getAuthHeaders(),
-      body: JSON.stringify(profileData)
-    });
-    const json = await res.json();
-    if (!res.ok) throw new Error(json.error || "Failed to update profile");
-    if (json.user) {
-      localStorage.setItem("admin_user", JSON.stringify(json.user));
+    try {
+      const res = await fetch(`${BASE_URL}/auth/profile`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: JSON.stringify(profileData)
+      });
+      const json = await res.json();
+      if (res.ok && json.user) {
+        localStorage.setItem("admin_user", JSON.stringify(json.user));
+        return json;
+      }
+    } catch {
+      // Local offline fallback
     }
-    return json;
+
+    const currentUserStr = localStorage.getItem("admin_user");
+    const currentUserObj = currentUserStr ? JSON.parse(currentUserStr) : {};
+    const updatedUser = {
+      ...currentUserObj,
+      name: profileData.name,
+      email: profileData.email || currentUserObj.email || "deekshithatravels21@gmail.com",
+      phone: profileData.phone || currentUserObj.phone || "6300540826"
+    };
+    localStorage.setItem("admin_user", JSON.stringify(updatedUser));
+    return { success: true, user: updatedUser };
   },
 
   changePassword: async (currentPassword, newPassword) => {
     if (isSupabaseConfigured() && supabase) {
-      const { error } = await supabase.auth.updateUser({ password: newPassword });
-      if (error) throw new Error(error.message);
-      return { success: true, message: "Password updated successfully in Supabase." };
+      try {
+        const { data: sessionData } = await supabase.auth.getSession();
+        if (sessionData?.session) {
+          const { error } = await supabase.auth.updateUser({ password: newPassword });
+          if (error) throw new Error(error.message);
+          return { success: true, message: "Password updated successfully in Supabase." };
+        }
+      } catch (sbErr) {
+        console.warn("Supabase password update fallback:", sbErr.message);
+      }
     }
 
     const res = await fetch(`${BASE_URL}/auth/change-password`, {

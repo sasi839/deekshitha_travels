@@ -96,7 +96,7 @@ export default function Navbar() {
           <div className="brand-logo-wrapper">
             <img
               src={logoImg}
-              alt="Deekshitha Travels Logo"
+              alt="Deekshitha Travels - 24/7 Taxi Services &amp; Car Rentals in Tirupati"
               className="navbar-brand-logo"
               width="96"
               height="44"
@@ -175,7 +175,7 @@ export default function Navbar() {
           <div className="mobile-drawer-brand">
             <img
               src={logoImg}
-              alt="Deekshitha Travels Logo"
+              alt="Deekshitha Travels - 24/7 Taxi Services &amp; Car Rentals in Tirupati"
               className="mobile-brand-logo"
               width="86"
               height="40"

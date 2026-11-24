@@ -5,36 +5,34 @@
 
 export const ABOUT_CONTENT = {
   sectionBadge: "About Deekshitha Travels",
-  mainHeading: "Reliable Taxi Services & Car Rentals in Tirupati.",
+  mainHeading: "Reliable 24/7 Taxi Services & Car Rentals in Tirupati.",
   description:
-    "Deekshitha Travels provides dependable taxi services, local travel, airport pickup and drop, and car rentals for customers across Tirupati, Renigunta, and Tirupati Airport. Whether you require prompt airport transportation, local city travel, or a flexible rental vehicle, our priority is to make every journey comfortable, punctual, and hassle-free.",
+    "Deekshitha Travels provides dependable local taxi booking, outstation cab services, 24/7 Tirupati Airport pickup and drop, and chauffeur-driven car rentals across Tirupati, Renigunta, and Tirumala hills. Whether you require prompt airport transfers, a spiritual temple darshan package, or a round-trip outstation journey to Chennai, Bangalore, or Vellore, our clean AC fleet and licensed hill-experienced drivers make every trip safe, punctual, and comfortable.",
   image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1000&q=80",
-  imageAlt: "Comfortable and safe travel with Deekshitha Travels in Tirupati",
+  imageAlt: "Deekshitha Travels chauffeur-driven taxi fleet in Tirupati",
   highlights: [
     {
       id: "taxi-services",
       title: "Taxi Services",
-      description: "On-demand and scheduled taxi services across Tirupati, Renigunta, and outstation trips."
+      description: "On-demand and scheduled taxi services across Tirupati, Renigunta, and outstation round-trips or one-way drops."
     },
     {
       id: "local-travel",
       title: "Local Travel",
-      description: "Comfortable city rides for temple visits, shopping, and everyday transit in Tirupati."
+      description: "Comfortable AC city rides for Tirumala darshan, Padmavathi Ammavari temple, Kapila Theertham, and railway transfers."
     },
     {
       id: "airport-transfers",
       title: "Airport Pickup and Drop",
-      description: "Punctual transfers to and from Tirupati Airport with hassle-free doorstep pickup."
+      description: "Punctual 24/7 transfers to and from Tirupati International Airport (TIR) with flight tracking and terminal pickup."
     },
     {
       id: "car-rentals",
       title: "Car Rentals",
-      description: "Flexible vehicle rental options tailored to your personal, family, or business travel."
+      description: "Flexible chauffeur-driven vehicle rentals (Sedans, MPVs, and Tempo Travellers) tailored for family pilgrimages and corporate travel."
     }
   ]
 };
-
-const SUPABASE_STORAGE_SERVICES_BASE = "https://vjaozqvobkazbgiztmxx.supabase.co/storage/v1/object/public/services";
 
 export const SERVICES_LIST = [
   {
@@ -44,9 +42,9 @@ export const SERVICES_LIST = [
     badge: "24/7 Available",
     rateNote: "Affordable km rates",
     features: ["Round & One-Way", "Doorstep Pickup"],
-    description: "Reliable, comfortable taxi services for round trips, one-way drops, and outstation travel across the Tirupati region.",
-    image: `${SUPABASE_STORAGE_SERVICES_BASE}/taxi_services.webp`,
-    imageAlt: "Deekshitha Travels taxi services in Tirupati",
+    description: "Dependable point-to-point and outstation taxi service in Tirupati for one-way drops, round trips, and interstate journeys to Chennai, Bangalore, and Vellore with upfront km pricing.",
+    image: "/images/services/taxi_services.webp",
+    imageAlt: "Deekshitha Travels 24/7 outstation and local taxi services in Tirupati",
     icon: "taxi",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Taxi Services."
   },
@@ -57,9 +55,9 @@ export const SERVICES_LIST = [
     badge: "Darshan Transit",
     rateNote: "Hourly & full-day",
     features: ["Temple Packages", "City Errand Drops"],
-    description: "Convenient local travel solutions across Tirupati for temple darshan, city errands, sightseeing, and railway transfers.",
-    image: `${SUPABASE_STORAGE_SERVICES_BASE}/local_travel.webp`,
-    imageAlt: "Local travel taxi services in Tirupati",
+    description: "Comfortable AC taxi rides for Tirumala darshan, Padmavathi Ammavari temple (Tiruchanur), Kapila Theertham, local sightseeing, and Tirupati railway station transfers.",
+    image: "/images/services/local_travel.webp",
+    imageAlt: "Local Tirupati temple darshan and sightseeing taxi cab",
     icon: "map-pin",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Local Travel in Tirupati."
   },
@@ -70,9 +68,9 @@ export const SERVICES_LIST = [
     badge: "Flight Punctual",
     rateNote: "Fixed transparent fares",
     features: ["Flight Tracking", "Luggage Support"],
-    description: "Prompt airport transfer services connecting Tirupati Airport, Renigunta, and Tirupati city with on-time pickups.",
-    image: `${SUPABASE_STORAGE_SERVICES_BASE}/airport_transfers.webp`,
-    imageAlt: "Airport pickup and drop services at Tirupati Airport",
+    description: "24/7 flight-aligned airport taxi transfers connecting Tirupati Airport (Renigunta terminal) to city hotels, railway stations, and Tirumala with flight tracking.",
+    image: "/images/services/airport_transfers.webp",
+    imageAlt: "Tirupati International Airport TIR cab pickup and drop service in Renigunta",
     icon: "plane",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Airport Pickup and Drop services."
   },
@@ -83,9 +81,9 @@ export const SERVICES_LIST = [
     badge: "Custom Plans",
     rateNote: "Driver included",
     features: ["Sedan & MPV", "Family & Corporate"],
-    description: "Vehicle rental packages with well-maintained cars for personal, family, or corporate travel needs.",
-    image: `${SUPABASE_STORAGE_SERVICES_BASE}/car_rentals.webp`,
-    imageAlt: "Car rental options by Deekshitha Travels in Tirupati",
+    description: "Flexible hourly and daily car rental packages in Tirupati with professional, courteous drivers for family pilgrimages, weddings, and corporate transit.",
+    image: "/images/services/car_rentals.webp",
+    imageAlt: "Chauffeur driven car rental fleet in Tirupati - Sedans, MPVs, and Tempo Travellers",
     icon: "key",
     whatsappText: "Hello Deekshitha Travels, I would like to enquire about Car Rentals."
   }

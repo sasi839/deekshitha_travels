@@ -5,8 +5,8 @@ export default function VehicleCard({ vehicle }) {
   const name = vehicle.vehicle_name || vehicle.name || "Customer Vehicle";
   const model = vehicle.vehicle_model || vehicle.model || "";
   const category = vehicle.category || "Prime Taxi";
-  const image = vehicle.image || vehicle.image_urls?.[0] || "/images/vehicles/maruti_suzuki_swift_dzire.jpg";
-  const image_alt = vehicle.image_alt || `${name} for hire in Tirupati`;
+  const image = vehicle.image || vehicle.image_urls?.[0] || "/images/vehicles/maruti_suzuki_swift_dzire.webp";
+  const image_alt = vehicle.image_alt || `${name} ${category} AC taxi cab for Tirupati darshan and airport travel`;
   const seating_capacity = vehicle.seating_capacity || "4 Seats";
   const ac_label = vehicle.ac_label || (parseInt(seating_capacity) >= 6 ? "Dual AC" : "AC");
   const luggage_capacity = vehicle.luggage_capacity || "2 Bags";
@@ -29,10 +29,13 @@ export default function VehicleCard({ vehicle }) {
           alt={image_alt}
           className="vehicle-image"
           loading="lazy"
+          decoding="async"
+          width="400"
+          height="250"
           onError={(e) => {
             // Prevent broken image links
             e.currentTarget.onerror = null;
-            e.currentTarget.src = "/images/vehicles/maruti_suzuki_swift_dzire.jpg";
+            e.currentTarget.src = "/images/vehicles/maruti_suzuki_swift_dzire.webp";
           }}
         />
         {badge && <span className="vehicle-badge">{badge}</span>}

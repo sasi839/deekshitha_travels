@@ -3,8 +3,21 @@
 
 User-agent: *
 Allow: /
+
+# Disallow private administrative and API routes
 Disallow: /admin
+Disallow: /admin/
 Disallow: /api/
 
-# Sitemap location
+# Explicitly ensure static media and stylesheet assets are accessible for rendering
+Allow: /images/
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Production XML Sitemap
 Sitemap: https://deekshithatravels.com/sitemap.xml

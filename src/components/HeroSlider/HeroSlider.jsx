@@ -126,9 +126,13 @@ export default function HeroSlider() {
             >
               <img
                 src={slideImg}
-                alt={slide.alt || slide.heading || slide.title || "Tirupati Travels Destination"}
+                alt={slide.alt || `${slide.heading || slide.title || "Tirupati"} taxi travel destination by Deekshitha Travels`}
                 className="hero-slide-image"
                 loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                width="1920"
+                height="1080"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = "/images/hero/tirumala_temple_gopuram.webp";
@@ -163,7 +167,7 @@ export default function HeroSlider() {
             </span>
           </div>
 
-          {/* Main Heading */}
+          {/* Primary Semantic H1 for Visible On-Page SEO */}
           <h1 className="hero-heading">
             {activeSlideHeading}
           </h1>

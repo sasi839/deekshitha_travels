@@ -387,6 +387,7 @@ export default function AdminPanel({ onBackToSite }) {
 
           {currentTab === "profile" && (
             <AdminProfile
+              key={currentUser?.id || currentUser?.username || "profile"}
               user={currentUser}
               onUpdateUser={(updated) => setCurrentUser(updated)}
               onLogout={handleLogout}

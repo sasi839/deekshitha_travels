@@ -100,9 +100,9 @@ export default function ServiceLocations() {
           <div className="section-badge-row">
             <span className="section-badge">Coverage Network</span>
           </div>
-          <h2 className="locations-title">Popular Destinations &amp; Service Locations</h2>
+          <h2 className="locations-title">Tirupati Taxi Service Locations &amp; Pilgrimage Hubs</h2>
           <p className="locations-subtitle">
-            Reliable local pickup and drop services across Tirupati, Tirumala hills, airports, railway junctions, and premier temples.
+            Reliable 24/7 doorstep pickup and drop services across Tirupati city, Tirumala hills, Renigunta railway junction, Tirupati Airport, and sacred temples.
           </p>
 
           {/* Category Filter Tabs */}
@@ -145,9 +145,12 @@ export default function ServiceLocations() {
                 <div className="location-image-wrapper">
                   <img
                     src={loc.image || "/images/hero/tirumala_temple_gopuram.webp"}
-                    alt={`${loc.name} taxi service in Tirupati`}
+                    alt={`${loc.name} taxi service and cab transfer in Tirupati`}
                     className="location-image"
                     loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="200"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = "/images/hero/tirumala_temple_gopuram.webp";
@@ -237,16 +240,41 @@ export default function ServiceLocations() {
           })}
         </div>
 
+        {/* Internal Link to Booking */}
+        <div className="locations-bottom-action">
+          <span className="locations-bottom-text">
+            Planning a pilgrimage darshan or airport cab pickup in Tirupati?
+          </span>
+          <a href="#booking" className="locations-bottom-link" aria-label="Book taxi for popular pilgrimage locations">
+            <span>Schedule Your Ride &rarr;</span>
+          </a>
+        </div>
+
         {/* Coverage Note Footer */}
         <div className="locations-bottom-notice">
-          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" className="notice-icon">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="16" x2="12" y2="12" />
-            <line x1="12" y1="8" x2="12.01" y2="8" />
-          </svg>
-          <p>
-            Custom doorstep pickup and drops available anywhere across Tirupati, Renigunta, Tirumala ghats, and Tirupati Airport.
-          </p>
+          <div className="locations-notice-left">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" className="notice-icon" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            <p>
+              24/7 doorstep pickup and drops available anywhere across Tirupati, Renigunta, Tirumala ghats, and Tirupati Airport (TIR).
+            </p>
+          </div>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Tirupati+Central+Near+Bus+Stand+Railway+Station+Tirupati+Andhra+Pradesh+517501"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="locations-maps-btn"
+            aria-label="Open Deekshitha Travels operating hub in Tirupati on Google Maps"
+          >
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>View on Google Maps</span>
+          </a>
         </div>
       </div>
     </section>

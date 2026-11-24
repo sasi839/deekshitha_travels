@@ -131,9 +131,9 @@ export default function EnquiryForm() {
               </span>
             </div>
 
-            <h2 className="enquiry-col-title">Book Your Ride in Minutes</h2>
+            <h2 className="enquiry-col-title">Book Your Tirupati Taxi &amp; Cab Online</h2>
             <p className="enquiry-col-desc">
-              Clean AC cabs, transparent pricing, and courteous hill-experienced drivers for your Tirupati &amp; outstation journey.
+              Clean AC cabs, transparent pricing, and courteous hill-experienced drivers for your Tirumala darshan, airport transfer, and outstation travel.
             </p>
 
             {/* Value Highlights */}
@@ -175,18 +175,42 @@ export default function EnquiryForm() {
               </div>
             </div>
 
-            {/* Direct Call Card */}
-            <div className="enquiry-call-card">
-              <div className="call-card-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
+            {/* Direct Call & Office Location Cards */}
+            <div className="enquiry-contact-cards">
+              <div className="enquiry-call-card">
+                <div className="call-card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <div className="call-card-details">
+                  <span className="call-card-hint">24/7 Helpline &amp; Booking</span>
+                  <a href={BUSINESS_INFO.phoneTel} className="call-card-link">
+                    {BUSINESS_INFO.phoneDisplay}
+                  </a>
+                </div>
               </div>
-              <div className="call-card-details">
-                <span className="call-card-hint">Need an immediate ride?</span>
-                <a href={BUSINESS_INFO.phoneTel} className="call-card-link">
-                  {BUSINESS_INFO.phoneDisplay}
-                </a>
+
+              <div className="enquiry-location-card">
+                <div className="loc-card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div className="loc-card-details">
+                  <span className="loc-card-hint">Operating Hub in Tirupati</span>
+                  <a
+                    href="https://maps.google.com/?q=Tirupati+Central,+Near+Bus+Stand+%26+Railway+Station,+Tirupati,+Andhra+Pradesh+517501"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="loc-card-link"
+                    title="View office location & get directions on Google Maps"
+                  >
+                    <span>{BUSINESS_INFO.address.street}, Tirupati</span>
+                    <span className="loc-directions-tag">Google Maps &rarr;</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

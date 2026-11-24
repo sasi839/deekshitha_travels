@@ -62,12 +62,12 @@ export default function VehicleFleet() {
               </span>
             )}
           </div>
-          <h2 className="section-title">Choose Your Ride</h2>
+          <h2 className="section-title">Verified Customer Vehicle Fleet in Tirupati</h2>
           <p className="section-subtitle">
-            Reliable customer vehicles for Tirupati darshan &amp; airport journeys.
+            Clean AC sedans, family MPVs &amp; luxury tempo travellers for Tirumala darshan &amp; airport journeys.
           </p>
           <p className="section-description">
-            Clean, air-conditioned cars with experienced drivers for local temple visits, airport transfers, and outstation tours.
+            Choose from our genuine, well-maintained fleet including Maruti Suzuki Swift Dzire, Maruti Ertiga, Toyota Innova Crysta, Toyota Etios, and Force Tempo Traveller. All vehicles are sanitized, fully air-conditioned, and chauffeured by licensed hill-experienced drivers.
           </p>
         </header>
 
@@ -126,11 +126,23 @@ export default function VehicleFleet() {
 
         {/* Vehicles Grid */}
         {!loading && vehicles.length > 0 && (
-          <div className="vehicles-grid">
-            {vehicles.map((vehicle) => (
-              <VehicleCard key={vehicle.id || vehicle.vehicle_name} vehicle={vehicle} />
-            ))}
-          </div>
+          <>
+            <div className="vehicles-grid">
+              {vehicles.map((vehicle) => (
+                <VehicleCard key={vehicle.id || vehicle.vehicle_name} vehicle={vehicle} />
+              ))}
+            </div>
+
+            {/* Internal Link to Booking */}
+            <div className="fleet-bottom-action">
+              <span className="fleet-bottom-text">
+                Need a customized tariff quote or multi-day temple darshan package?
+              </span>
+              <a href="#booking" className="fleet-bottom-link" aria-label="Book a cab online with Deekshitha Travels">
+                <span>Book Cab Online &rarr;</span>
+              </a>
+            </div>
+          </>
         )}
       </div>
     </section>

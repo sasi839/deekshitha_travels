@@ -11,12 +11,12 @@ export default function ServicesSection() {
           <div className="section-badge-row">
             <span className="section-badge">What We Offer</span>
           </div>
-          <h2 className="services-title">Our Services</h2>
+          <h2 className="services-title">Taxi Services &amp; Travel Solutions in Tirupati</h2>
           <p className="services-subtitle">
-            Reliable taxi services, local travel, airport transfers, and car rentals.
+            Reliable local taxi booking, Tirupati airport transfers, and outstation car rentals.
           </p>
           <p className="services-description">
-            Dedicated customer transportation tailored for Tirupati darshan, business transit, and South India outstation journeys.
+            Dedicated passenger transportation tailored for peaceful Tirumala darshan, business transit, and outstation highway travel across South India.
           </p>
         </header>
 
@@ -35,6 +35,9 @@ export default function ServicesSection() {
                     alt={service.imageAlt}
                     className="service-image"
                     loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="220"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = "/images/hero/tirumala_ghat_road.webp";
@@ -149,6 +152,16 @@ export default function ServicesSection() {
               </article>
             );
           })}
+        </div>
+
+        {/* Internal Link to Booking */}
+        <div className="services-bottom-action">
+          <span className="services-bottom-text">
+            Need doorstep pickup, flight transfer, or a tailored multi-day itinerary?
+          </span>
+          <a href="#booking" className="services-bottom-link" aria-label="Book your taxi service online">
+            <span>Proceed to Reservation &rarr;</span>
+          </a>
         </div>
       </div>
     </section>

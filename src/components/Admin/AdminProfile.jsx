@@ -3,7 +3,7 @@ import { api } from "../../services/api";
 import { BUSINESS_INFO } from "../../constants/businessInfo";
 
 export default function AdminProfile({ user, onUpdateUser, onLogout, onShowToast }) {
-  // Profile state
+  // Profile state initialized from current authenticated user
   const [name, setName] = useState(user?.name || "Deekshitha Travels Administrator");
   const [email, setEmail] = useState(user?.email || "deekshithatravels21@gmail.com");
   const [phone, setPhone] = useState(user?.phone || "6300540826");
@@ -114,7 +114,7 @@ export default function AdminProfile({ user, onUpdateUser, onLogout, onShowToast
               Username: <strong>@{user?.username || "admin"}</strong> &bull; Role: <strong>{user?.role || "admin"}</strong>
             </p>
             <p className="profile-banner-meta">
-              Session: <strong>Active (JWT Authenticated)</strong> &bull; Storage: <strong>Local JSON Database</strong>
+              Session: <strong>Active (Authenticated)</strong> &bull; Storage: <strong>{api.isSupabaseLive?.() ? "Supabase Cloud Database" : "Local JSON Database"}</strong>
             </p>
           </div>
         </div>
@@ -289,7 +289,7 @@ export default function AdminProfile({ user, onUpdateUser, onLogout, onShowToast
           </div>
           <div className="business-info-row">
             <span className="business-info-label">Service Headquarters:</span>
-            <strong className="business-info-value">{BUSINESS_INFO.address.city}, {BUSINESS_INFO.address.state}</strong>
+            <strong className="business-info-value">{BUSINESS_INFO.address?.city || "Tirupati"}, {BUSINESS_INFO.address?.state || "Andhra Pradesh"}</strong>
           </div>
         </div>
 
