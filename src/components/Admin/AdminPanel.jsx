@@ -5,6 +5,7 @@ import AdminOverview from "./AdminOverview";
 import AdminSliders from "./AdminSliders";
 import AdminVehicles from "./AdminVehicles";
 import AdminProfile from "./AdminProfile";
+import logoImg from "../../assets/logo.png";
 import "./AdminPanel.css";
 
 export default function AdminPanel({ onBackToSite }) {
@@ -43,6 +44,31 @@ export default function AdminPanel({ onBackToSite }) {
       }
     }
     verify();
+
+    // Subscribe to live Supabase auth state transitions
+    const subscription = api.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT" || !session) {
+        setIsAuthenticated(false);
+        setCurrentUser(null);
+      } else if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+        if (session?.user) {
+          setIsAuthenticated(true);
+          setCurrentUser({
+            id: session.user.id,
+            email: session.user.email,
+            username: session.user.email.split("@")[0],
+            name: session.user.user_metadata?.full_name || session.user.email.split("@")[0],
+            role: "admin"
+          });
+        }
+      }
+    });
+
+    return () => {
+      if (subscription && typeof subscription.unsubscribe === "function") {
+        subscription.unsubscribe();
+      }
+    };
   }, []);
 
   // Fetch admin data
@@ -146,7 +172,7 @@ export default function AdminPanel({ onBackToSite }) {
       <aside className={`admin-sidebar ${isMobileMenuOpen ? "open" : ""}`}>
         <div className="admin-brand">
           <img
-            src="/images/logo.png"
+            src={logoImg}
             alt="Deekshitha Travels"
             className="admin-brand-logo"
             onError={(e) => {

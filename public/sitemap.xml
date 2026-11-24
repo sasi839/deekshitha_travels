@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage & Core Landing -->
+  <url>
+    <loc>https://deekshithatravels.com/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/logo.png</image:loc>
+      <image:title>Deekshitha Travels Taxi Services &amp; Car Rentals in Tirupati</image:title>
+      <image:caption>Official logo of Deekshitha Travels - Leading taxi and cab rental agency in Tirupati, Renigunta, and Tirupati Airport.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/hero/tirumala_temple_gopuram.webp</image:loc>
+      <image:title>Tirumala Sri Venkateswara Swamy Temple Gopurams</image:title>
+      <image:caption>Authentic view of Tirumala Temple Gopurams and Golden Ananda Nilayam Vimana in Tirupati.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/hero/tirumala_ghat_road.webp</image:loc>
+      <image:title>Tirumala Mountain Ghat Road Taxi Ride</image:title>
+      <image:caption>Scenic Tirumala Ghat Road winding through lush green Seshachalam Hills.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/hero/padmavathi_ammavari_temple.webp</image:loc>
+      <image:title>Sri Padmavathi Ammavari Temple, Tiruchanur</image:title>
+      <image:caption>Sri Padmavathi Ammavari Temple traditional architecture in Tiruchanur, Tirupati.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://deekshithatravels.com/images/hero/kapila_theertham.webp</image:loc>
+      <image:title>Kapila Theertham Temple and Waterfalls, Tirupati</image:title>
+      <image:caption>Kapila Theertham Temple and natural sacred waterfall at the foot of Seshachalam Hills.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Services Section -->
+  <url>
+    <loc>https://deekshithatravels.com/#services</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Vehicle Fleet Section -->
+  <url>
+    <loc>https://deekshithatravels.com/#vehicles</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Destinations & Coverage Locations -->
+  <url>
+    <loc>https://deekshithatravels.com/#locations</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- About Company Section -->
+  <url>
+    <loc>https://deekshithatravels.com/#about</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Online Taxi Booking & Enquiry -->
+  <url>
+    <loc>https://deekshithatravels.com/#contact</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+</urlset>

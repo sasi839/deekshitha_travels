@@ -1,6 +1,9 @@
+import { api } from "../../services/api";
+
 export default function AdminOverview({ sliders, vehicles, onNavigate, onOpenNewSlider, onOpenNewVehicle, onBackToSite }) {
   const activeSliders = sliders.filter((s) => s.active !== false).length;
   const activeVehicles = vehicles.filter((v) => v.active !== false).length;
+  const isSupabase = api.isSupabaseLive();
 
   return (
     <div className="admin-overview">
@@ -19,6 +22,22 @@ export default function AdminOverview({ sliders, vehicles, onNavigate, onOpenNew
             <span>View Live Site</span>
           </button>
         </div>
+      </div>
+
+      {/* Supabase Connectivity Status Banner */}
+      <div className={`admin-alert ${isSupabase ? "admin-alert-success" : "admin-alert-info"}`} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ width: 10, height: 10, borderRadius: "50%", background: isSupabase ? "#10b981" : "#f59e0b" }} />
+          <div>
+            <strong>Database Connection: </strong>
+            <span>{isSupabase ? "Live Supabase PostgreSQL & Storage Connected" : "Local Development Database Active"}</span>
+          </div>
+        </div>
+        {!isSupabase && (
+          <span style={{ fontSize: "0.85rem", color: "#94a3b8" }}>
+            Add VITE_SUPABASE_URL in .env to switch to cloud database
+          </span>
+        )}
       </div>
 
       {/* Metric Cards Grid */}

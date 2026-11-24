@@ -84,13 +84,13 @@ export default function AdminVehicles({ vehicles, onRefresh, onShowToast }) {
     try {
       setUploading(true);
       setFormError("");
-      const res = await api.uploadImage(file);
+      const res = await api.uploadVehicleImage(file);
       setForm((prev) => ({
         ...prev,
         image: res.url,
         image_alt: prev.image_alt || `${prev.name || "Taxi"} photo`
       }));
-      if (onShowToast) onShowToast("Vehicle photograph uploaded!", "success");
+      if (onShowToast) onShowToast("Vehicle photograph uploaded to Supabase Storage!", "success");
     } catch (err) {
       setFormError(err.message || "Failed to upload photo");
     } finally {
@@ -137,7 +137,7 @@ export default function AdminVehicles({ vehicles, onRefresh, onShowToast }) {
 
   const handleToggleActive = async (vehicle) => {
     try {
-      await api.toggleVehicle(vehicle.id);
+      await api.toggleVehicle(vehicle.id, vehicle.active !== false);
       if (onShowToast) {
         onShowToast(
           `Vehicle ${vehicle.active ? "hidden from" : "visible on"} public site.`,
@@ -152,7 +152,8 @@ export default function AdminVehicles({ vehicles, onRefresh, onShowToast }) {
 
   const handleDelete = async (id) => {
     try {
-      await api.deleteVehicle(id);
+      const v = vehicles.find((item) => item.id === id);
+      await api.deleteVehicle(id, v?.image);
       setDeleteConfirmId(null);
       if (onShowToast) onShowToast("Vehicle removed from fleet.", "success");
       await onRefresh();

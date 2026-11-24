@@ -1,6 +1,6 @@
 import { BUSINESS_INFO } from "../../constants/businessInfo";
 import SSNexoraFooter from "./SSNexoraFooter";
-import logoImg from "../../assets/logo.webp";
+import logoImg from "../../assets/logo.png";
 import "./Footer.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -28,8 +28,8 @@ export default function Footer({ onOpenAdmin }) {
                   src={logoImg}
                   alt="Deekshitha Travels Logo"
                   className="footer-brand-logo"
-                  width="76"
-                  height="38"
+                  width="110"
+                  height="52"
                   loading="lazy"
                 />
               </div>
@@ -93,7 +93,13 @@ export default function Footer({ onOpenAdmin }) {
               </a>
 
               {/* Location */}
-              <div className="footer-location-line">
+              <a
+                href="https://maps.google.com/?q=Tirupati,+Andhra+Pradesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-contact-link"
+                aria-label="Find Deekshitha Travels location in Tirupati, Andhra Pradesh on Google Maps"
+              >
                 <div className="contact-icon-box">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -101,7 +107,7 @@ export default function Footer({ onOpenAdmin }) {
                   </svg>
                 </div>
                 <span>Location: Tirupati, Andhra Pradesh.</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -111,9 +117,11 @@ export default function Footer({ onOpenAdmin }) {
           <span className="strip-label">Service Locations:</span>
           <div className="strip-areas">
             {serviceAreas.map((area, idx) => (
-              <span key={area} className="strip-area-item">
-                <span className="strip-pin" aria-hidden="true">📍</span>
-                <span>{area}</span>
+              <span key={area} className="strip-area-item-wrap">
+                <a href="#locations" className="strip-area-link" aria-label={`View ${area} taxi service coverage`}>
+                  <span className="strip-pin" aria-hidden="true">📍</span>
+                  <span>{area}</span>
+                </a>
                 {idx < serviceAreas.length - 1 && <span className="strip-separator" aria-hidden="true">•</span>}
               </span>
             ))}

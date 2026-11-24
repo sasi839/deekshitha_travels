@@ -60,9 +60,9 @@ export default function AdminSliders({ sliders, onRefresh, onShowToast }) {
     try {
       setUploading(true);
       setFormError("");
-      const res = await api.uploadImage(file);
+      const res = await api.uploadSliderImage(file);
       setForm((prev) => ({ ...prev, image: res.url }));
-      if (onShowToast) onShowToast("Image uploaded successfully!", "success");
+      if (onShowToast) onShowToast("Slider photograph uploaded to Supabase Storage!", "success");
     } catch (err) {
       setFormError(err.message || "Failed to upload image");
     } finally {
@@ -104,7 +104,7 @@ export default function AdminSliders({ sliders, onRefresh, onShowToast }) {
 
   const handleToggleActive = async (slider) => {
     try {
-      await api.toggleSlider(slider.id);
+      await api.toggleSlider(slider.id, slider.active !== false);
       if (onShowToast) {
         onShowToast(
           `Slider ${slider.active ? "deactivated" : "activated"} on live site.`,
@@ -119,7 +119,8 @@ export default function AdminSliders({ sliders, onRefresh, onShowToast }) {
 
   const handleDelete = async (id) => {
     try {
-      await api.deleteSlider(id);
+      const s = sliders.find((item) => item.id === id);
+      await api.deleteSlider(id, s?.image);
       setDeleteConfirmId(null);
       if (onShowToast) onShowToast("Slider deleted permanently.", "success");
       await onRefresh();

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { BUSINESS_INFO, HERO_SLIDES } from "../../constants/businessInfo";
 import { api } from "../../services/api";
 import "./HeroSlider.css";
@@ -7,8 +7,10 @@ export default function HeroSlider() {
   const [slides, setSlides] = useState(HERO_SLIDES);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
 
-  // Fetch active sliders from dynamic backend API
+  // Fetch active sliders from dynamic backend API (Supabase first)
   useEffect(() => {
     let isMounted = true;
     async function fetchSliders() {
@@ -64,7 +66,37 @@ export default function HeroSlider() {
     }
   };
 
+  // Touch Swipe Support for Mobile
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    setIsPaused(false);
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const diff = touchStartX.current - touchEndX.current;
+      if (diff > 45) {
+        // Swiped left -> next
+        nextSlide();
+      } else if (diff < -45) {
+        // Swiped right -> prev
+        prevSlide();
+      }
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   const activeSlideData = slides[safeCurrentSlide] || slides[0] || {};
+  const activeSlideHeading = activeSlideData.heading || activeSlideData.title || "Tirupati Travels";
+  const activeSlideSubtitle = activeSlideData.description || activeSlideData.subtitle || "Reliable temple darshan & airport taxi service.";
+  const activeSlideBadge = activeSlideData.badge || activeSlideData.heading || BUSINESS_INFO.locationHighlight;
 
   return (
     <section
@@ -73,8 +105,9 @@ export default function HeroSlider() {
       aria-label="Deekshitha Travels Highlights"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
       onKeyDown={handleKeyDown}
@@ -84,6 +117,7 @@ export default function HeroSlider() {
       <div className="hero-slides-wrapper">
         {slides.map((slide, index) => {
           const isActive = index === safeCurrentSlide;
+          const slideImg = slide.image || slide.image_url;
           return (
             <div
               key={slide.id || index}
@@ -91,12 +125,13 @@ export default function HeroSlider() {
               aria-hidden={!isActive}
             >
               <img
-                src={slide.image}
-                alt={slide.alt || slide.title || "Tirupati Travels"}
+                src={slideImg}
+                alt={slide.alt || slide.heading || slide.title || "Tirupati Travels Destination"}
                 className="hero-slide-image"
                 loading={index === 0 ? "eager" : "lazy"}
                 onError={(e) => {
-                  e.currentTarget.src = "/temple-tirumala.jpg";
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/images/hero/tirumala_temple_gopuram.webp";
                 }}
               />
               <div className="hero-slide-overlay" />
@@ -108,7 +143,7 @@ export default function HeroSlider() {
       {/* Hero Content (Floating over slides) */}
       <div className="hero-content-container">
         <div className="hero-content-inner">
-          {/* Location & Temple Destination Badge */}
+          {/* Location & Destination Highlight Badge */}
           <div className="hero-location-badge">
             <svg
               className="location-icon"
@@ -124,24 +159,18 @@ export default function HeroSlider() {
               <circle cx="12" cy="10" r="3" />
             </svg>
             <span key={safeCurrentSlide} className="badge-fade-text">
-              {activeSlideData.badge || BUSINESS_INFO.locationHighlight}
+              {activeSlideBadge}
             </span>
           </div>
 
           {/* Main Heading */}
           <h1 className="hero-heading">
-            {activeSlideData.title ? (
-              activeSlideData.title
-            ) : (
-              <>
-                Tirupati &amp; Tirumala <span className="highlight-text">Cabs</span>
-              </>
-            )}
+            {activeSlideHeading}
           </h1>
 
           {/* Supporting Text */}
           <p className="hero-subtitle">
-            {activeSlideData.subtitle || "Reliable temple darshan & airport taxi service."}
+            {activeSlideSubtitle}
           </p>
 
           {/* Call to Action Buttons */}
@@ -216,23 +245,29 @@ export default function HeroSlider() {
         </>
       )}
 
-      {/* Slide Indicators (Dots) */}
+      {/* Slide Indicators (Dots + Counter) */}
       {totalSlides > 1 && (
-        <div className="slider-indicators" role="tablist" aria-label="Slide Selection">
-          {slides.map((slide, index) => {
-            const isActive = index === safeCurrentSlide;
-            return (
-              <button
-                key={slide.id || index}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`indicator-dot ${isActive ? "active" : ""}`}
-                onClick={() => goToSlide(index)}
-              />
-            );
-          })}
+        <div className="slider-indicators-box">
+          <div className="slider-counter" aria-hidden="true">
+            {safeCurrentSlide + 1} / {totalSlides}
+          </div>
+          <div className="slider-indicators" role="tablist" aria-label="Slide Selection">
+            {slides.map((slide, index) => {
+              const isActive = index === safeCurrentSlide;
+              const slideTitle = slide.heading || slide.title || `Destination ${index + 1}`;
+              return (
+                <button
+                  key={slide.id || index}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-label={`Go to slide ${index + 1}: ${slideTitle}`}
+                  className={`indicator-dot ${isActive ? "active" : ""}`}
+                  onClick={() => goToSlide(index)}
+                />
+              );
+            })}
+          </div>
         </div>
       )}
     </section>

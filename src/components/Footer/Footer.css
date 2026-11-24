@@ -57,10 +57,27 @@
 .footer-brand-logo {
   height: 44px;
   width: auto;
-  max-width: 88px;
+  max-width: 105px;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+}
+
+.footer-emblem {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f5b014 0%, #e5a009 100%);
+  color: #121417;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(245, 176, 20, 0.4);
+}
+
+.footer-emblem .brand-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .footer-logo-text {
@@ -211,10 +228,24 @@
   color: #cbd5e1;
 }
 
-.strip-area-item {
+.strip-area-item,
+.strip-area-item-wrap {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+}
+
+.strip-area-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.strip-area-link:hover {
+  color: #f5b014;
 }
 
 .strip-pin {

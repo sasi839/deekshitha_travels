@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BUSINESS_INFO } from "../../constants/businessInfo";
-import logoImg from "../../assets/logo.webp";
+import logoImg from "../../assets/logo.png";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -33,27 +33,73 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
+  // Dynamic ScrollSpy: Highlight active link based on current viewport position
+  useEffect(() => {
+    const sectionIds = ["home", "about", "vehicles", "services", "locations", "contact", "booking"];
+    const handleScrollSpy = () => {
+      const scrollPos = window.scrollY + 130;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            const mappedLink = id === "booking" ? "#contact" : `#${id}`;
+            setActiveLink(mappedLink);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    handleScrollSpy();
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const handleLinkClick = (href) => {
+  // Smooth scroll handler with fixed navbar offset compensation
+  const handleLinkClick = (href, e) => {
     setActiveLink(href);
     setIsMenuOpen(false);
+
+    if (href.startsWith("#")) {
+      if (e) e.preventDefault();
+      const sectionId = href.substring(1);
+      const targetElement = document.getElementById(sectionId) || (sectionId === "contact" ? document.getElementById("booking") : null);
+      if (targetElement) {
+        const navHeader = document.querySelector(".navbar-header");
+        const navOffset = navHeader ? navHeader.offsetHeight : 64;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: Math.max(0, elementPosition - navOffset),
+          behavior: "smooth"
+        });
+        window.history.pushState(null, "", href);
+      }
+    }
   };
 
   return (
     <header className={`navbar-header ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
-        {/* Brand Logo */}
-        <a href="#home" className="navbar-brand" onClick={() => handleLinkClick("#home")} aria-label="Deekshitha Travels Home">
+        {/* Brand Logo with Default Authentic Logo Image */}
+        <a
+          href="#home"
+          className="navbar-brand"
+          onClick={(e) => handleLinkClick("#home", e)}
+          aria-label="Deekshitha Travels Home"
+        >
           <div className="brand-logo-wrapper">
             <img
               src={logoImg}
               alt="Deekshitha Travels Logo"
               className="navbar-brand-logo"
-              width="64"
-              height="32"
+              width="96"
+              height="44"
               loading="eager"
             />
           </div>
@@ -71,7 +117,7 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   className={`nav-link ${activeLink === link.href ? "active" : ""}`}
-                  onClick={() => handleLinkClick(link.href)}
+                  onClick={(e) => handleLinkClick(link.href, e)}
                 >
                   {link.label}
                 </a>
@@ -131,8 +177,8 @@ export default function Navbar() {
               src={logoImg}
               alt="Deekshitha Travels Logo"
               className="mobile-brand-logo"
-              width="64"
-              height="32"
+              width="86"
+              height="40"
             />
             <div className="brand-text">
               <span className="brand-title">DEEKSHITHA</span>
@@ -158,7 +204,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={`mobile-nav-link ${activeLink === link.href ? "active" : ""}`}
-                onClick={() => handleLinkClick(link.href)}
+                onClick={(e) => handleLinkClick(link.href, e)}
               >
                 <span>{link.label}</span>
                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none">

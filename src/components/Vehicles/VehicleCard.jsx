@@ -2,22 +2,21 @@ import { BUSINESS_INFO } from "../../constants/businessInfo";
 import "./VehicleCard.css";
 
 export default function VehicleCard({ vehicle }) {
-  const {
-    name,
-    category,
-    image,
-    image_alt,
-    seating_capacity,
-    ac_label,
-    luggage_capacity,
-    description,
-    price_display,
-    price_note,
-    badge
-  } = vehicle;
+  const name = vehicle.vehicle_name || vehicle.name || "Customer Vehicle";
+  const model = vehicle.vehicle_model || vehicle.model || "";
+  const category = vehicle.category || "Prime Taxi";
+  const image = vehicle.image || vehicle.image_urls?.[0] || "/images/vehicles/maruti_suzuki_swift_dzire.jpg";
+  const image_alt = vehicle.image_alt || `${name} for hire in Tirupati`;
+  const seating_capacity = vehicle.seating_capacity || "4 Seats";
+  const ac_label = vehicle.ac_label || (parseInt(seating_capacity) >= 6 ? "Dual AC" : "AC");
+  const luggage_capacity = vehicle.luggage_capacity || "2 Bags";
+  const description = vehicle.description || "";
+  const price_display = vehicle.price_display || "Tariff on Request";
+  const price_note = vehicle.price_note || "Contact for custom quotes";
+  const badge = vehicle.badge || "";
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Deekshitha Travels, I am interested in booking ${name}. Please share the details.`
+    `Hello Deekshitha Travels, I am interested in booking ${name}${model ? ` (${model})` : ""}. Please share tariff and availability.`
   );
   const whatsappUrl = `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${whatsappMessage}`;
 
@@ -27,9 +26,14 @@ export default function VehicleCard({ vehicle }) {
       <div className="vehicle-image-wrapper">
         <img
           src={image}
-          alt={image_alt || name}
+          alt={image_alt}
           className="vehicle-image"
           loading="lazy"
+          onError={(e) => {
+            // Prevent broken image links
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = "/images/vehicles/maruti_suzuki_swift_dzire.jpg";
+          }}
         />
         {badge && <span className="vehicle-badge">{badge}</span>}
         <span className="vehicle-category">{category}</span>

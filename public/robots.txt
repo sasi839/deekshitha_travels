@@ -1,0 +1,10 @@
+# Robots.txt for Deekshitha Travels
+# Website: https://deekshithatravels.com/
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://deekshithatravels.com/sitemap.xml

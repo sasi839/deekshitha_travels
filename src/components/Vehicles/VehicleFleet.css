@@ -30,6 +30,14 @@
   box-sizing: border-box;
 }
 
+.section-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
 .section-badge {
   display: inline-block;
   background: rgba(245, 176, 20, 0.12);
@@ -41,7 +49,33 @@
   letter-spacing: 0.12em;
   padding: 0.35rem 0.85rem;
   border-radius: 100px;
-  margin-bottom: 0.85rem;
+}
+
+.fleet-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10b981;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 100px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
 }
 
 .section-title {
@@ -70,28 +104,141 @@
 
 /* --------------------------------------------------------------------------
    Vehicles Grid
-   Desktop: 3 per row (Preserved)
+   Desktop: 4 or 3 per row
    Tablet: 2 per row
    Mobile: 2 per row (Phase 8 2-Column Mobile Optimization)
    -------------------------------------------------------------------------- */
 .vehicles-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
   align-items: stretch;
   width: 100%;
   box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Loading Skeleton State
+   -------------------------------------------------------------------------- */
+.fleet-skeleton-card {
+  background: #1a1e24;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(90deg, #1e232b 25%, #272e38 50%, #1e232b 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeleton-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.skeleton-line {
+  height: 14px;
+  background: linear-gradient(90deg, #1e232b 25%, #272e38 50%, #1e232b 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-title { width: 75%; height: 20px; }
+.skeleton-desc { width: 90%; }
+.skeleton-btn { height: 38px; border-radius: 6px; margin-top: 0.5rem; }
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Empty / Error State Cards
+   -------------------------------------------------------------------------- */
+.fleet-notice-card {
+  max-width: 580px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: #181c22;
+  border: 1px solid rgba(245, 176, 20, 0.2);
+  border-radius: 14px;
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.fleet-notice-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+  color: #f5b014;
+}
+
+.fleet-notice-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: #ffffff;
+}
+
+.fleet-notice-desc {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.fleet-notice-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fleet-btn-retry {
+  background: #f5b014;
+  color: #121417;
+  border: none;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.fleet-btn-retry:hover {
+  background: #e5a40f;
+}
+
+.fleet-btn-contact {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
 }
 
 /* --------------------------------------------------------------------------
    Tablet Layout (max-width: 1024px)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  .vehicles-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
-  }
-
   .vehicle-fleet-section {
     padding: 4.5rem 1.25rem;
   }
@@ -114,10 +261,13 @@
     margin-bottom: 1.75rem;
   }
 
+  .section-badge-row {
+    justify-content: flex-start;
+  }
+
   .section-badge {
     font-size: 0.72rem;
     padding: 0.28rem 0.7rem;
-    margin-bottom: 0.65rem;
   }
 
   .section-title {
@@ -134,7 +284,7 @@
     font-size: 0.85rem;
   }
 
-  /* 2-Column Grid on Mobile with minmax(0, 1fr) to prevent track blowouts */
+  /* 2-Column Grid on Mobile with minmax(0, 1fr) */
   .vehicles-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.65rem;
