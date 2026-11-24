@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import HeroSlider from "./components/HeroSlider/HeroSlider";
 import VehicleFleet from "./components/Vehicles/VehicleFleet";
@@ -8,8 +8,9 @@ import ServiceLocations from "./components/Locations/ServiceLocations";
 import EnquiryForm from "./components/Enquiry/EnquiryForm";
 import Footer from "./components/Footer/Footer";
 import FloatingContactButtons from "./components/FloatingButtons/FloatingContactButtons";
-import AdminPanel from "./components/Admin/AdminPanel";
 import "./App.css";
+
+const AdminPanel = lazy(() => import("./components/Admin/AdminPanel"));
 
 export default function App() {
   const [isAdminRoute, setIsAdminRoute] = useState(() => {
@@ -56,7 +57,40 @@ export default function App() {
   };
 
   if (isAdminRoute) {
-    return <AdminPanel onBackToSite={handleBackToSite} />;
+    return (
+      <Suspense
+        fallback={
+          <div
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#121417",
+              color: "#f5b014",
+              gap: "1rem"
+            }}
+          >
+            <div
+              style={{
+                width: 42,
+                height: 42,
+                border: "3px solid rgba(245, 176, 20, 0.2)",
+                borderTopColor: "#f5b014",
+                borderRadius: "50%",
+                animation: "spin 0.8s linear infinite"
+              }}
+            />
+            <span style={{ fontSize: "0.9rem", color: "#94a3b8", fontWeight: 500 }}>
+              Loading Admin Portal...
+            </span>
+          </div>
+        }
+      >
+        <AdminPanel onBackToSite={handleBackToSite} />
+      </Suspense>
+    );
   }
 
   return (
